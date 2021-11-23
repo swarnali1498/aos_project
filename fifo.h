@@ -72,5 +72,6 @@ void fifo(vector<int>& pages,int frames)
 	}
 	float hit_ratio=((float)hits)/(pages.size());
 	float miss_ratio=1-hit_ratio;
-	cout<<"Hit-ratio is "<<hit_ratio<<" and miss ratio is "<<miss_ratio<<endl;
+	cout<<"Hit-ratio is "<<hit_ratio<<endl;
+	cout<<"Miss ratio is "<<miss_ratio<<endl;
 }

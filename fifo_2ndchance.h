@@ -57,8 +57,8 @@ void fifo_secondchance(vector<int>& pages,int frames)
 			int pos=0;
 			if(mp.find(pages[i])==mp.end())
 			{
-				int f=0;
-				for(j=0;j<v.size();j++)
+				int f=0,num=v.size();
+				for(j=0;j<num;j++)
 				{
 					if(v[j]!=-1 && mp[v[j]]==0)
 					{
@@ -73,7 +73,8 @@ void fifo_secondchance(vector<int>& pages,int frames)
 				}
 				if(f==0)
 				{
-					for(j=0;j<v.size();j++)
+					int num=v.size();
+					for(j=0;j<num;j++)
 					{
 						if(v[j]!=-1)
 						{
@@ -104,5 +105,6 @@ void fifo_secondchance(vector<int>& pages,int frames)
 	}
 	float hit_ratio=((float)hits)/(pages.size());
 	float miss_ratio=1-hit_ratio;
-	cout<<"Hit-ratio is "<<hit_ratio<<" and miss ratio is "<<miss_ratio<<endl;
+	cout<<"Hit-ratio is "<<hit_ratio<<endl;
+	cout<<"Miss ratio is "<<miss_ratio<<endl;
 }
