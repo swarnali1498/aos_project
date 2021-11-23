@@ -11,5 +11,5 @@ with open('output.txt') as f:
 plt.plot(x, y)
 plt.xlabel('No. of frames')
 plt.ylabel('Miss Ratio')
-plt.title('My first graph!')
+plt.title('Page replacement policies')
 plt.show()
