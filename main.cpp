@@ -56,7 +56,7 @@ void run_algo(int choice, int no_of_pages)
         float mr;
         FILE* out_fp;
         out_fp = fopen("output.txt","w");       
-        for(i=3;i<53;i++)
+        for(i=3;i<23;i++)
         {
             int frame_size = i;
             if (choice == 1) {
@@ -147,6 +147,7 @@ int main() {
     }
     fclose(fp);
 
+    fp=fopen("input.txt","r");
 
     // Read all page no. in advance.
     while(readNextPageNo(fp, &data)) {
