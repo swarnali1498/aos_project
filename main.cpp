@@ -54,27 +54,43 @@ void run_algo(int choice, int no_of_pages)
     {
         int i,j;
         float mr;
-
-        for(i=3;i<13;i++)
+        FILE* out_fp;
+        out_fp = fopen("output.txt","w");       
+        for(i=3;i<53;i++)
         {
             int frame_size = i;
-                if (choice == 1) {
-                mr = random(frame_size, pageNoSeq); 
+            if (choice == 1) {
+                mr = random(frame_size, pageNoSeq);
+                // string coordinates = to_string(i)+","+to_string(mr)+"\n";
+                // cout << coordinates;
+                // fprintf(out_fp, "%s", coordinates.c_str());
             }
             if(choice == 2){
-                mr = optimal(frame_size, pageNoSeq); 
+                mr = optimal(frame_size, pageNoSeq);
+                // string coordinates = to_string(i)+","+to_string(mr)+"\n";
+                // // cout << coordinates;
+                // fprintf(out_fp, "%s", coordinates.c_str());
             }
             else if(choice == 3)
             {
                 mr = NRU(pageNoSeq,frame_size);
+                // string coordinates = to_string(i)+","+to_string(mr)+"\n";
+                // // cout << coordinates;
+                // fprintf(out_fp, "%s", coordinates.c_str());
             }
             else if(choice == 4)
             {
                 mr = fifo(pageNoSeq,frame_size);
+                string coordinates = to_string(i)+","+to_string(mr)+"\n";
+                // cout << coordinates;
+                fprintf(out_fp, "%s", coordinates.c_str());
             }
             else if(choice == 5)
             {
                 mr = fifo_secondchance(pageNoSeq,frame_size);
+                string coordinates = to_string(i)+","+to_string(mr)+"\n";
+                // cout << coordinates;
+                fprintf(out_fp, "%s", coordinates.c_str());
             }
             else if(choice == 6)
             {
@@ -82,19 +98,29 @@ void run_algo(int choice, int no_of_pages)
             }
             else if(choice == 7){
                 mr = LRU(frame_size,pageNoSeq);
+                string coordinates = to_string(i)+","+to_string(mr)+"\n";
+                // cout << coordinates;
+                fprintf(out_fp, "%s", coordinates.c_str());
             }
             else if(choice == 8)
             {
                 mr = NFU(pageNoSeq,frame_size);
+                string coordinates = to_string(i)+","+to_string(mr)+"\n";
+                // cout << coordinates;
+                fprintf(out_fp, "%s", coordinates.c_str());
             }
             else if(choice == 9)
             {
-                mr = working_set(frame_size, pageNoSeq);                          
+                mr = working_set(frame_size, pageNoSeq);
+                string coordinates = to_string(i)+","+to_string(mr)+"\n";
+                // cout << coordinates;
+                fprintf(out_fp, "%s", coordinates.c_str());                        
             }
             else if(choice == 0){
                 break;
             }
         }
+        fclose(out_fp);
         char filename[] = "graph.py";
         FILE* fp;
 
@@ -111,6 +137,16 @@ int main() {
     // int data, pageNo, i = 0, hits = 0, misses = 0;
     // FILE *fp = fopen("input.txt", "r");
     // vector<int> pageNoSeq;
+    
+    srand(time(0));
+    FILE* fp=fopen("input.txt","w");
+    for(int i=0;i<3000;i++)
+    {
+        int num = rand()%100;
+        fprintf(fp,"%d ",num);
+    }
+    fclose(fp);
+
 
     // Read all page no. in advance.
     srand(time(0));

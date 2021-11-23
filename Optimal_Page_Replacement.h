@@ -108,10 +108,10 @@ float optimal(int frame_size, vector<int> pageNoSeq) {
     }
 
     float hitRatio = ((float)(hits))/(hits + misses);
-    cout << " Total no. of page accesses : " << hits + misses << endl;
-    cout << " No. of hits : " << hits << endl;
-    cout << " No. of misses : " << misses << endl;
-    cout << " Hit ratio : " << hitRatio << endl;
+    // cout << " Total no. of page accesses : " << hits + misses << endl;
+    // cout << " No. of hits : " << hits << endl;
+    // cout << " No. of misses : " << misses << endl;
+    // cout << " Hit ratio : " << hitRatio << endl;
     return (1-hitRatio);
 }
 
