@@ -53,23 +53,36 @@ void run_algo(int choice, int no_of_pages)
     {
         int i,j;
         float mr;
-
-        for(i=3;i<13;i++)
+        FILE* out_fp;
+        out_fp = fopen("output.txt","w");       
+        for(i=3;i<53;i++)
         {
             int frame_size = i;
-                if (choice == 1) {
-                mr = random(frame_size, pageNoSeq) 
+            if (choice == 1) {
+                mr = random(frame_size, pageNoSeq);
+                // string coordinates = to_string(i)+","+to_string(mr)+"\n";
+                // cout << coordinates;
+                // fprintf(out_fp, "%s", coordinates.c_str());
             }
             if(choice == 2){
-                mr = optimal(frame_size, pageNoSeq) 
+                mr = optimal(frame_size, pageNoSeq);
+                string coordinates = to_string(i)+","+to_string(mr)+"\n";
+                cout << coordinates;
+                fprintf(out_fp, "%s", coordinates.c_str());
             }
             else if(choice == 3)
             {
                 mr = NRU(pageNoSeq,frame_size);
+                // string coordinates = to_string(i)+","+to_string(mr)+"\n";
+                // cout << coordinates;
+                // fprintf(out_fp, "%s", coordinates.c_str());
             }
             else if(choice == 4)
             {
                 mr = fifo(pageNoSeq,frame_size);
+                // string coordinates = to_string(i)+","+to_string(mr)+"\n";
+                // cout << coordinates;
+                // fprintf(out_fp, "%s", coordinates.c_str());
             }
             else if(choice == 5)
             {
@@ -84,12 +97,13 @@ void run_algo(int choice, int no_of_pages)
             }
             else if(choice == 9)
             {
-                mr = working_set(frame_size, pageNoSeq)                          
+                mr = working_set(frame_size, pageNoSeq);                          
             }
             else if(choice == 0){
                 break;
             }
         }
+        fclose(out_fp);
         char filename[] = "graph.py";
         FILE* fp;
 

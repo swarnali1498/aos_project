@@ -30,7 +30,7 @@ using namespace std;
 	}
 
 */
-void fifo_secondchance(vector<int>& pages,int frames)
+float fifo_secondchance(vector<int>& pages,int frames)
 {
 	unordered_map<int,int> mp;
 	vector<int> v;
