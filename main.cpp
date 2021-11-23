@@ -10,9 +10,9 @@
 #include "Working_Set_Page_Replacement.h"
 #include "fifo.h"
 #include "fifo_2ndchance.h"
+#include "clock.h"
 #include "nfu.h"
 #include "nru.h"
-#include <python3.8/Python.h>
 
 
 bool readNextPageNo(FILE* fp ,int* pageNo) {
@@ -44,42 +44,7 @@ bool readNextPageNo(FILE* fp ,int* pageNo) {
     return true;
 }
 
-
-int main() {
-    int data, pageNo, i = 0, hits = 0, misses = 0;
-    FILE *fp = fopen("input.txt", "r");
-    vector<int> pageNoSeq;
-
-    // Read all page no. in advance.
-    while(readNextPageNo(fp, &data)) {
-        pageNo = data;
-        pageNoSeq.push_back(pageNo);
-        i++;
-    }
-
-    int no_of_pages = i - 1;
-
-    // Create Frame
-    while(1){
-        cout<<"Select Algorithm"<<endl;
-        cout<<"1. Random Page Replacement algorithm"<<endl;
-        cout<<"2. Optimal Page Replacement algorithm"<<endl;
-        cout<<"3. NRU (Not Recently Used)"<<endl;
-        cout<<"4. FIFO (First-In-First-Out)"<<endl;
-        cout<<"5. FIFO with second chance"<<endl;
-        cout<<"6. Clock"<<endl;
-        cout<<"7. LRU (Least Recently Used)"<<endl;
-        cout<<"8. NFU (Not Frequently Used)"<<endl;
-        cout<<"9. Working Set"<<endl;
-        cout<<"10. Aging (approximate LRU)"<<endl;
-        cout<<"11.WSClock"<<endl;
-        cout<<"0. Exit"<<endl;
-        int choice;
-        cin>>choice;
-        run_algo(choice);
-    }
-
-    void run_algo(int choice)
+void run_algo(int choice)
     {
         int i,j;
 
@@ -138,6 +103,10 @@ int main() {
             {
                 mr = fifo_secondchance(pageNoSeq,frame_size);
             }
+            else if(choice == 6)
+            {
+                mr = clock(pageNoSeq,frame_size);
+            }
             else if(choice == 7){
                 mr = LRU(frame_size,pageNoSeq);
             }
@@ -169,7 +138,7 @@ int main() {
                 break;
             }
         }
-        char filename[] = "graph.py";
+        /*char filename[] = "graph.py";
 	    FILE* fp;
 
     	Py_Initialize();
@@ -177,7 +146,43 @@ int main() {
 	    fp = _Py_fopen(filename, "r");
 	    PyRun_SimpleFile(fp, filename);
 
-	    Py_Finalize();
+	    Py_Finalize();*/
     }
+
+int main() {
+    int data, pageNo, i = 0, hits = 0, misses = 0;
+    FILE *fp = fopen("input.txt", "r");
+    vector<int> pageNoSeq;
+
+    // Read all page no. in advance.
+    while(readNextPageNo(fp, &data)) {
+        pageNo = data;
+        pageNoSeq.push_back(pageNo);
+        i++;
+    }
+
+    int no_of_pages = i - 1;
+
+    // Create Frame
+    while(1){
+        cout<<"Select Algorithm"<<endl;
+        cout<<"1. Random Page Replacement algorithm"<<endl;
+        cout<<"2. Optimal Page Replacement algorithm"<<endl;
+        cout<<"3. NRU (Not Recently Used)"<<endl;
+        cout<<"4. FIFO (First-In-First-Out)"<<endl;
+        cout<<"5. FIFO with second chance"<<endl;
+        cout<<"6. Clock"<<endl;
+        cout<<"7. LRU (Least Recently Used)"<<endl;
+        cout<<"8. NFU (Not Frequently Used)"<<endl;
+        cout<<"9. Working Set"<<endl;
+        cout<<"10. Aging (approximate LRU)"<<endl;
+        cout<<"11.WSClock"<<endl;
+        cout<<"0. Exit"<<endl;
+        int choice;
+        cin>>choice;
+        run_algo(choice);
+    }
+
+    
     return 0;
 }
