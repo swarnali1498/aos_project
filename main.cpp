@@ -10,6 +10,7 @@
 #include "Working_Set_Page_Replacement.h"
 #include "fifo.h"
 #include "fifo_2ndchance.h"
+#include "clock.h"
 #include "nfu.h"
 #include "nru.h"
 #include <Python.h>
@@ -90,6 +91,10 @@ void run_algo(int choice, int no_of_pages)
                 string coordinates = to_string(i)+","+to_string(mr)+"\n";
                 // cout << coordinates;
                 fprintf(out_fp, "%s", coordinates.c_str());
+            }
+            else if(choice == 6)
+            {
+                mr = clock(pageNoSeq,frame_size);
             }
             else if(choice == 7){
                 mr = LRU(frame_size,pageNoSeq);

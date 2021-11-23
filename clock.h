@@ -1,10 +1,7 @@
-#include<bits/stdc++.h>
-using namespace std;
-
-float fifo_secondchance(vector<int>& pages,int frames)
+float clock(vector<int>& pages,int frames)
 {
 	unordered_map<int,int> mp;
-	queue<int> q;
+	vector<int> v;
 	int i,j;
 	int hits=0;
 	
@@ -15,7 +12,7 @@ float fifo_secondchance(vector<int>& pages,int frames)
 			if(mp.find(pages[i])==mp.end())
 			{
 				mp[pages[i]]=0;
-				q.push(pages[i]);
+				v.push_back(pages[i]);
 			}
 			else
 			{
@@ -28,31 +25,43 @@ float fifo_secondchance(vector<int>& pages,int frames)
 			int pos=0;
 			if(mp.find(pages[i])==mp.end())
 			{
-				int f=0,num=q.size();
-				while(c!=num)
+				int f=0,num=v.size();
+				for(j=0;j<num;j++)
 				{
-					c++;
-					int ele = q.front();
-					q.pop();
-					if(mp[ele] == 0)
+					if(v[j]!=-1 && mp[v[j]]==0)
 					{
-						mp.erase(ele);
+						mp.erase(v[j]);
+						v[j]=-1;
 						mp[pages[i]]=0;
-						q.push(pages[i]);
+						v.push_back(pages[i]);
 						f=1;
+						pos=j;
 						break;
-					}
-					else
-					{
-						mp[ele]=0;
-						q.push(ele);
 					}
 				}
 				if(f==0)
 				{
-					int ele=q.front();
-					q.pop();
-					mp.erase(ele);
+					int num=v.size();
+					for(j=0;j<num;j++)
+					{
+						if(v[j]!=-1)
+						{
+							mp.erase(v[j]);
+							v[j]=-1;
+							mp[pages[i]]=0;
+							v.push_back(pages[i]);
+						}
+					}
+				}
+				else
+				{
+					for(j=0;j<pos;j++)
+					{
+						if(v[j]!=-1)
+						{
+							mp[v[j]]=0;
+						}
+					}
 				}
 			}
 			else
