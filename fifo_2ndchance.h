@@ -1,7 +1,7 @@
 #include<bits/stdc++.h>
 using namespace std;
 
-int main()
+/*int main()
 {
 	string p;
 	cout<<"Enter pages: "<<endl;
@@ -10,11 +10,6 @@ int main()
 	cout<<"Enter number of frames: "<<endl;
 	int frames;
 	cin>>frames;
-	unordered_map<int,int> mp;
-	vector<int> v;
-	int i,j;
-	string temp="";
-	int hits=0;
 	for(i=0;i<p.size();i++)
 	{
 		if(p[i]==' ')
@@ -33,14 +28,17 @@ int main()
 		int val=stoi(temp);
 		pages.push_back(val);
 	}
+
+*/
+void fifo_secondchance(vector<int>& pages,int frames)
+{
+	unordered_map<int,int> mp;
+	vector<int> v;
+	int i,j;
+	int hits=0;
+	
 	for(i=0;i<pages.size();i++)
 	{
-		/*cout<<"V"<<endl;
-		for(j=0;j<v.size();j++)
-		{
-			cout<<v[j]<<" ";
-		}
-		cout<<endl;*/
 		if(mp.size()<frames)
 		{
 			if(mp.find(pages[i])==mp.end())
@@ -103,14 +101,8 @@ int main()
 				hits++;
 			}
 		}
-		/*for(auto itr:mp)
-		{
-			cout<<itr.first<<" "<<itr.second<<endl;
-		}
-		cout<<endl;*/
 	}
 	float hit_ratio=((float)hits)/(pages.size());
 	float miss_ratio=1-hit_ratio;
-	//cout<<pages.size()-hits<<endl;
 	cout<<"Hit-ratio is "<<hit_ratio<<" and miss ratio is "<<miss_ratio<<endl;
 }

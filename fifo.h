@@ -1,7 +1,7 @@
 #include<bits/stdc++.h>
 using namespace std;
 
-int main()
+/*int main()
 {
 	string p;
 	cout<<"Enter pages: "<<endl;
@@ -10,11 +10,6 @@ int main()
 	cout<<"Enter number of frames: "<<endl;
 	int frames;
 	cin>>frames;
-	unordered_set<string> s;
-	queue<string> q;
-	int i,j;
-	string temp="";
-	int hits=0;
 	for(i=0;i<p.size();i++)
 	{
 		if(p[i]==' ')
@@ -31,6 +26,15 @@ int main()
 	{
 		pages.push_back(temp);
 	}
+*/
+
+void fifo(vector<int>& pages,int frames)
+{
+	unordered_set<int> s;
+	queue<int> q;
+	int i,j;
+	int hits=0;
+	
 	for(i=0;i<pages.size();i++)
 	{
 		if(s.size()<frames)
@@ -49,7 +53,7 @@ int main()
 		{
 			if(s.find(pages[i])==s.end())
 			{
-				string ele=q.front();
+				int ele=q.front();
 				q.pop();
 				s.erase(ele);
 				s.insert(pages[i]);
@@ -60,11 +64,11 @@ int main()
 				hits++;
 			}
 		}
-		for(auto itr:s)
+		/*for(auto itr:s)
 		{
 			cout<<itr<<" ";
 		}
-		cout<<endl;
+		cout<<endl;*/
 	}
 	float hit_ratio=((float)hits)/(pages.size());
 	float miss_ratio=1-hit_ratio;
