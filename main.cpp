@@ -6,6 +6,8 @@
 #include <vector>
 #include "LRU_aos.h"
 #include "Optimal_Page_Replacement.h"
+#include "Random_Page_Replacement.h"
+#include "Working_Set_Page_Replacement.h"
 #include "fifo.h"
 #include "fifo_2ndchance.h"
 #include "nfu.h"
@@ -45,7 +47,6 @@ bool readNextPageNo(FILE* fp ,int* pageNo) {
 int main() {
     int data, pageNo, i = 0, hits = 0, misses = 0;
     FILE *fp = fopen("input.txt", "r");
-    OptimalPageReplacementFrame*  frame;
     vector<int> pageNoSeq;
     int frame_size;
 
@@ -65,21 +66,43 @@ int main() {
     // Create Frame
     while(1){
         cout<<"Select Algorithm"<<endl;
-        cout<<"1. Optimal Page Replacement algorithm"<<endl;
-        cout<<"2. NRU (Not Recently Used)"<<endl;
-        cout<<"3. FIFO (First-In-First-Out)"<<endl;
-        cout<<"4. FIFO with second chance"<<endl;
-        cout<<"5. Clock"<<endl;
-        cout<<"6. LRU (Least Recently Used)"<<endl;
-        cout<<"7. NFU (Not Frequently Used)"<<endl;
-        cout<<"8. Working Set"<<endl;
-        cout<<"9. Aging (approximate LRU)"<<endl;
-        cout<<"10. WSClock"<<endl;
+        cout<<"1. Random Page Replacement algorithm"<<endl;
+        cout<<"2. Optimal Page Replacement algorithm"<<endl;
+        cout<<"3. NRU (Not Recently Used)"<<endl;
+        cout<<"4. FIFO (First-In-First-Out)"<<endl;
+        cout<<"5. FIFO with second chance"<<endl;
+        cout<<"6. Clock"<<endl;
+        cout<<"7. LRU (Least Recently Used)"<<endl;
+        cout<<"8. NFU (Not Frequently Used)"<<endl;
+        cout<<"9. Working Set"<<endl;
+        cout<<"10. Aging (approximate LRU)"<<endl;
+        cout<<"11.WSClock"<<endl;
         cout<<"0. Exit"<<endl;
         int choice;
         cin>>choice;
 
-        if(choice == 1){
+        if (choice == 1) {
+            RandomPageReplacementFrame*  frame;
+            frame = new RandomPageReplacementFrame(frame_size);
+            int pos = 0;
+            while(pos < no_of_pages) {
+                int pageNo = pageNoSeq[pos];
+                if(frame->accessPage(pageNo)){
+                        hits++;
+                } else {
+                        misses++;
+                }
+                pos++;
+            }
+
+            float hitRatio = ((float)(hits))/(hits + misses);
+            cout << " Total no. of page accesses : " << hits + misses << endl;
+            cout << " No. of hits : " << hits << endl;
+            cout << " No. of misses : " << misses << endl;
+            cout << " Hit ratio : " << hitRatio << endl;            
+        }
+        if(choice == 2){
+            OptimalPageReplacementFrame*  frame;
             frame = new OptimalPageReplacementFrame(frame_size, pageNoSeq);
             int pos = 0;
             while(pos < no_of_pages) {
@@ -98,24 +121,44 @@ int main() {
             cout << " No. of misses : " << misses << endl;
             cout << " Hit ratio : " << hitRatio << endl;
         }
-        else if(choice == 2)
+        else if(choice == 3)
         {
             NRU(pageNoSeq,frame_size);
         }
-        else if(choice == 3)
+        else if(choice == 4)
         {
             fifo(pageNoSeq,frame_size);
         }
-        else if(choice == 4)
+        else if(choice == 5)
         {
             fifo_secondchance(pageNoSeq,frame_size);
         }
-        else if(choice == 6){
+        else if(choice == 7){
             LRU(frame_size,pageNoSeq);
         }
-        else if(choice == 7)
+        else if(choice == 8)
         {
             NFU(pageNoSeq,frame_size);
+        }
+        else if(choice == 9)
+        {
+            WorkingSetPageReplacementFrame*  frame;
+            frame = new WorkingSetPageReplacementFrame(frame_size, pageNoSeq);
+            int pos = 0;
+            while(pos < no_of_pages) {
+                int pageNo = pageNoSeq[pos];
+                if(frame->accessPage(pageNo, pos)){
+                        hits++;
+                } else {
+                        misses++;
+                }
+                pos++;
+            }
+            float hitRatio = ((float)(hits))/(hits + misses);
+            cout << " Total no. of page accesses : " << hits + misses << endl;
+            cout << " No. of hits : " << hits << endl;
+            cout << " No. of misses : " << misses << endl;
+            cout << " Hit ratio : " << hitRatio << endl;            
         }
         else if(choice == 0){
             break;
