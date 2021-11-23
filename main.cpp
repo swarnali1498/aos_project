@@ -137,6 +137,16 @@ int main() {
     // int data, pageNo, i = 0, hits = 0, misses = 0;
     // FILE *fp = fopen("input.txt", "r");
     // vector<int> pageNoSeq;
+    
+    srand(time(0));
+    FILE* fp=fopen("input.txt","w");
+    for(int i=0;i<3000;i++)
+    {
+        int num = rand()%100;
+        fprintf(fp,"%d ",num);
+    }
+    fclose(fp);
+
 
     // Read all page no. in advance.
     while(readNextPageNo(fp, &data)) {
