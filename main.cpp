@@ -2,7 +2,7 @@
 #include <set>
 #include <functional>
 #include <iostream>
-#include<time.h>
+#include <time.h>
 #include <vector>
 #include "LRU_aos.h"
 #include "Optimal_Page_Replacement.h"
@@ -12,6 +12,7 @@
 #include "fifo_2ndchance.h"
 #include "nfu.h"
 #include "nru.h"
+#include <python3.8/Python.h>
 
 
 bool readNextPageNo(FILE* fp ,int* pageNo) {
@@ -48,16 +49,11 @@ int main() {
     int data, pageNo, i = 0, hits = 0, misses = 0;
     FILE *fp = fopen("input.txt", "r");
     vector<int> pageNoSeq;
-    int frame_size;
 
     // Read all page no. in advance.
     while(readNextPageNo(fp, &data)) {
-        if(i==0) {
-            frame_size = data;
-        } else {
-            pageNo = data;
-            pageNoSeq.push_back(pageNo);
-        }
+        pageNo = data;
+        pageNoSeq.push_back(pageNo);
         i++;
     }
 
@@ -80,89 +76,108 @@ int main() {
         cout<<"0. Exit"<<endl;
         int choice;
         cin>>choice;
+        run_algo(choice);
+    }
 
-        if (choice == 1) {
-            RandomPageReplacementFrame*  frame;
-            frame = new RandomPageReplacementFrame(frame_size);
-            int pos = 0;
-            while(pos < no_of_pages) {
-                int pageNo = pageNoSeq[pos];
-                if(frame->accessPage(pageNo)){
-                        hits++;
-                } else {
-                        misses++;
-                }
-                pos++;
-            }
+    void run_algo(int choice)
+    {
+        int i,j;
 
-            float hitRatio = ((float)(hits))/(hits + misses);
-            cout << " Total no. of page accesses : " << hits + misses << endl;
-            cout << " No. of hits : " << hits << endl;
-            cout << " No. of misses : " << misses << endl;
-            cout << " Hit ratio : " << hitRatio << endl;            
-        }
-        if(choice == 2){
-            OptimalPageReplacementFrame*  frame;
-            frame = new OptimalPageReplacementFrame(frame_size, pageNoSeq);
-            int pos = 0;
-            while(pos < no_of_pages) {
-                int pageNo = pageNoSeq[pos];
-                if(frame->accessPage(pageNo, pos)){
-                        hits++;
-                } else {
-                        misses++;
+        for(i=3;i<13;i++)
+        {
+            int frame_size = i;
+                if (choice == 1) {
+                RandomPageReplacementFrame*  frame;
+                frame = new RandomPageReplacementFrame(frame_size);
+                int pos = 0;
+                while(pos < no_of_pages) {
+                    int pageNo = pageNoSeq[pos];
+                    if(frame->accessPage(pageNo)){
+                            hits++;
+                    } else {
+                            misses++;
+                    }
+                    pos++;
                 }
-                pos++;
-            }
 
-            float hitRatio = ((float)(hits))/(hits + misses);
-            cout << " Total no. of page accesses : " << hits + misses << endl;
-            cout << " No. of hits : " << hits << endl;
-            cout << " No. of misses : " << misses << endl;
-            cout << " Hit ratio : " << hitRatio << endl;
-        }
-        else if(choice == 3)
-        {
-            NRU(pageNoSeq,frame_size);
-        }
-        else if(choice == 4)
-        {
-            fifo(pageNoSeq,frame_size);
-        }
-        else if(choice == 5)
-        {
-            fifo_secondchance(pageNoSeq,frame_size);
-        }
-        else if(choice == 7){
-            LRU(frame_size,pageNoSeq);
-        }
-        else if(choice == 8)
-        {
-            NFU(pageNoSeq,frame_size);
-        }
-        else if(choice == 9)
-        {
-            WorkingSetPageReplacementFrame*  frame;
-            frame = new WorkingSetPageReplacementFrame(frame_size, pageNoSeq);
-            int pos = 0;
-            while(pos < no_of_pages) {
-                int pageNo = pageNoSeq[pos];
-                if(frame->accessPage(pageNo, pos)){
-                        hits++;
-                } else {
-                        misses++;
-                }
-                pos++;
+                float hitRatio = ((float)(hits))/(hits + misses);
+                cout << " Total no. of page accesses : " << hits + misses << endl;
+                cout << " No. of hits : " << hits << endl;
+                cout << " No. of misses : " << misses << endl;
+                cout << " Hit ratio : " << hitRatio << endl;            
             }
-            float hitRatio = ((float)(hits))/(hits + misses);
-            cout << " Total no. of page accesses : " << hits + misses << endl;
-            cout << " No. of hits : " << hits << endl;
-            cout << " No. of misses : " << misses << endl;
-            cout << " Hit ratio : " << hitRatio << endl;            
+            if(choice == 2){
+                OptimalPageReplacementFrame*  frame;
+                frame = new OptimalPageReplacementFrame(frame_size, pageNoSeq);
+                int pos = 0;
+                while(pos < no_of_pages) {
+                    int pageNo = pageNoSeq[pos];
+                    if(frame->accessPage(pageNo, pos)){
+                            hits++;
+                    } else {
+                            misses++;
+                    }
+                    pos++;
+                }
+
+                float hitRatio = ((float)(hits))/(hits + misses);
+                cout << " Total no. of page accesses : " << hits + misses << endl;
+                cout << " No. of hits : " << hits << endl;
+                cout << " No. of misses : " << misses << endl;
+                cout << " Hit ratio : " << hitRatio << endl;
+            }
+            else if(choice == 3)
+            {
+                mr = NRU(pageNoSeq,frame_size);
+            }
+            else if(choice == 4)
+            {
+                mr = fifo(pageNoSeq,frame_size);
+            }
+            else if(choice == 5)
+            {
+                mr = fifo_secondchance(pageNoSeq,frame_size);
+            }
+            else if(choice == 7){
+                mr = LRU(frame_size,pageNoSeq);
+            }
+            else if(choice == 8)
+            {
+                mr = NFU(pageNoSeq,frame_size);
+            }
+            else if(choice == 9)
+            {
+                WorkingSetPageReplacementFrame*  frame;
+                frame = new WorkingSetPageReplacementFrame(frame_size, pageNoSeq);
+                int pos = 0;
+                while(pos < no_of_pages) {
+                    int pageNo = pageNoSeq[pos];
+                    if(frame->accessPage(pageNo, pos)){
+                            hits++;
+                    } else {
+                            misses++;
+                    }
+                    pos++;
+                }
+                float hitRatio = ((float)(hits))/(hits + misses);
+                cout << " Total no. of page accesses : " << hits + misses << endl;
+                cout << " No. of hits : " << hits << endl;
+                cout << " No. of misses : " << misses << endl;
+                cout << " Hit ratio : " << hitRatio << endl;            
+            }
+            else if(choice == 0){
+                break;
+            }
         }
-        else if(choice == 0){
-            break;
-        }
+        char filename[] = "graph.py";
+	    FILE* fp;
+
+    	Py_Initialize();
+
+	    fp = _Py_fopen(filename, "r");
+	    PyRun_SimpleFile(fp, filename);
+
+	    Py_Finalize();
     }
     return 0;
 }

@@ -107,4 +107,5 @@ void fifo_secondchance(vector<int>& pages,int frames)
 	float miss_ratio=1-hit_ratio;
 	cout<<"Hit-ratio is "<<hit_ratio<<endl;
 	cout<<"Miss ratio is "<<miss_ratio<<endl;
+	return miss_ratio;
 }
