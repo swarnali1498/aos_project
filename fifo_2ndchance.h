@@ -28,7 +28,7 @@ float fifo_secondchance(vector<int>& pages,int frames)
 			int pos=0;
 			if(mp.find(pages[i])==mp.end())
 			{
-				int f=0,num=q.size();
+				int f=0,num=q.size(),c=0;
 				while(c!=num)
 				{
 					c++;
