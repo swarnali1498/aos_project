@@ -66,38 +66,50 @@ void run_algo(int choice, int no_of_pages)
             }
             if(choice == 2){
                 mr = optimal(frame_size, pageNoSeq);
-                string coordinates = to_string(i)+","+to_string(mr)+"\n";
-                cout << coordinates;
-                fprintf(out_fp, "%s", coordinates.c_str());
+                // string coordinates = to_string(i)+","+to_string(mr)+"\n";
+                // // cout << coordinates;
+                // fprintf(out_fp, "%s", coordinates.c_str());
             }
             else if(choice == 3)
             {
                 mr = NRU(pageNoSeq,frame_size);
                 // string coordinates = to_string(i)+","+to_string(mr)+"\n";
-                // cout << coordinates;
+                // // cout << coordinates;
                 // fprintf(out_fp, "%s", coordinates.c_str());
             }
             else if(choice == 4)
             {
                 mr = fifo(pageNoSeq,frame_size);
-                // string coordinates = to_string(i)+","+to_string(mr)+"\n";
+                string coordinates = to_string(i)+","+to_string(mr)+"\n";
                 // cout << coordinates;
-                // fprintf(out_fp, "%s", coordinates.c_str());
+                fprintf(out_fp, "%s", coordinates.c_str());
             }
             else if(choice == 5)
             {
                 mr = fifo_secondchance(pageNoSeq,frame_size);
+                string coordinates = to_string(i)+","+to_string(mr)+"\n";
+                // cout << coordinates;
+                fprintf(out_fp, "%s", coordinates.c_str());
             }
             else if(choice == 7){
                 mr = LRU(frame_size,pageNoSeq);
+                string coordinates = to_string(i)+","+to_string(mr)+"\n";
+                // cout << coordinates;
+                fprintf(out_fp, "%s", coordinates.c_str());
             }
             else if(choice == 8)
             {
                 mr = NFU(pageNoSeq,frame_size);
+                string coordinates = to_string(i)+","+to_string(mr)+"\n";
+                // cout << coordinates;
+                fprintf(out_fp, "%s", coordinates.c_str());
             }
             else if(choice == 9)
             {
-                mr = working_set(frame_size, pageNoSeq);                          
+                mr = working_set(frame_size, pageNoSeq);
+                string coordinates = to_string(i)+","+to_string(mr)+"\n";
+                // cout << coordinates;
+                fprintf(out_fp, "%s", coordinates.c_str());                        
             }
             else if(choice == 0){
                 break;
