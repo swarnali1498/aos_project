@@ -56,7 +56,7 @@ map<int, int> modify(set<int> unique)
     return modified;
 }
 
-void performance(int n, int pageFault)
+float performance(int n, int pageFault)
 {
     cout << "Number of Page Faults: " << pageFault << endl;
     double missRatio = double(pageFault) / n;
@@ -64,9 +64,10 @@ void performance(int n, int pageFault)
 
     cout << "Hit Ratio: " << setprecision(2) << hitRatio << endl;
     cout << "Miss Ratio: " << setprecision(2) << missRatio << endl;
+    return missRatio;
 }
 
-void NRU(vector<int> pages, int frames)
+float NRU(vector<int> pages, int frames)
 {
     // string s2;
     // stringstream s(str);
@@ -120,7 +121,8 @@ void NRU(vector<int> pages, int frames)
         //     cout << a.first << " ";
         // cout << endl;
     }
-    performance(n, pageFault);
+    float missRatio = performance(n, pageFault);
+    return missRatio;
 }
 
 // int main()

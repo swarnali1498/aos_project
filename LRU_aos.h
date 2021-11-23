@@ -149,7 +149,7 @@ class DLinkedList{
 // };
 
 
-void LRU(int cap, vector<int> token){
+float LRU(int cap, vector<int> token){
 	int capacity, size, miss;
 	DLinkedList *n;
 	map<int, node*> m;
@@ -188,7 +188,7 @@ void LRU(int cap, vector<int> token){
 	cout<<"misses: "<<miss<<endl;
 	float mr=float(float(miss)/float(l)), hr = float(float(l-miss)/float(l));
 	cout<<"miss ratio: "<<setprecision(2)<<mr<<endl<<"Hit ratio: "<<setprecision(2)<<hr<<endl;
-
+	return mr;
 }
 
 // int main(){

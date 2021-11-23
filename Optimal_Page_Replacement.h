@@ -91,6 +91,31 @@ class OptimalPageReplacementFrame {
         set<int, greater<int>> _frame_buffer;
 };
 
+float optimal(int frame_size, vector<int> pageNoSeq) {
+    int no_of_pages = pageNoSeq.size();
+    int hits = 0, misses = 0;
+    OptimalPageReplacementFrame*  frame;
+    frame = new OptimalPageReplacementFrame(frame_size, pageNoSeq);
+    int pos = 0;
+    while(pos < no_of_pages) {
+        int pageNo = pageNoSeq[pos];
+        if(frame->accessPage(pageNo, pos)){
+            hits++;
+        } else {
+            misses++;
+        }
+        pos++;
+    }
+
+    float hitRatio = ((float)(hits))/(hits + misses);
+    cout << " Total no. of page accesses : " << hits + misses << endl;
+    cout << " No. of hits : " << hits << endl;
+    cout << " No. of misses : " << misses << endl;
+    cout << " Hit ratio : " << hitRatio << endl;
+    return (1-hitRatio);
+}
+
+
 /*bool readNextPageNo(FILE* fp ,int* pageNo) {
     int retval;
 
