@@ -66,7 +66,7 @@ void performance(int n, int pageFault)
     cout << "Miss Ratio: " << setprecision(2) << missRatio << endl;
 }
 
-void LRU(vector<int> pages, int frames)
+void NRU(vector<int> pages, int frames)
 {
     // string s2;
     // stringstream s(str);

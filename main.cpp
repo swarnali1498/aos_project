@@ -6,6 +6,10 @@
 #include <vector>
 #include "LRU_aos.h"
 #include "Optimal_Page_Replacement.h"
+#include "fifo.h"
+#include "fifo_2ndchance.h"
+#include "nfu.h"
+#include "nru.h"
 
 
 bool readNextPageNo(FILE* fp ,int* pageNo) {
@@ -94,8 +98,24 @@ int main() {
             cout << " No. of misses : " << misses << endl;
             cout << " Hit ratio : " << hitRatio << endl;
         }
+        else if(choice == 2)
+        {
+            NRU(pageNoSeq,frame_size);
+        }
+        else if(choice == 3)
+        {
+            fifo(pageNoSeq,frame_size);
+        }
+        else if(choice == 4)
+        {
+            fifo_secondchance(pageNoSeq,frame_size);
+        }
         else if(choice == 6){
             LRU(frame_size,pageNoSeq);
+        }
+        else if(choice == 7)
+        {
+            NFU(pageNoSeq,frame_size);
         }
         else if(choice == 0){
             break;

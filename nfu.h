@@ -1,7 +1,7 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-int replacePage(unordered_map<int, int> table, unordered_map<int, int> counter)
+int replacePage2(unordered_map<int, int> table, unordered_map<int, int> counter)
 {
     int oldPage;
     int minCount = INT_MAX;
@@ -17,7 +17,7 @@ int replacePage(unordered_map<int, int> table, unordered_map<int, int> counter)
     return oldPage;
 }
 
-void performance(int n, int pageFault)
+void performance2(int n, int pageFault)
 {
     cout << "Number of Page Faults: " << pageFault << endl;
     double missRatio = double(pageFault) / n;
@@ -53,7 +53,7 @@ void NFU(vector<int> pages, int frames)
             if (table.size() >= capacity)
             {
                 // select a page to replace from the memory
-                int oldPage = replacePage(table, counter);
+                int oldPage = replacePage2(table, counter);
                 table.erase(oldPage);
                 counter.erase(oldPage);
             }
@@ -71,7 +71,7 @@ void NFU(vector<int> pages, int frames)
         //     cout << a.first << " ";
         // cout << endl;
     }
-    performance(n, pageFault);
+    performance2(n, pageFault);
 }
 
 // int main()
