@@ -101,7 +101,7 @@ private:
     set<int, greater<int>> _frame_buffer;
 };
 
-float working_set(int frame_size, vector<int> pageNoSeq)
+int working_set(int frame_size, vector<int> pageNoSeq)
 {
     int no_of_pages = pageNoSeq.size();
     int hits = 0, misses = 0;
@@ -122,79 +122,9 @@ float working_set(int frame_size, vector<int> pageNoSeq)
         pos++;
     }
     float hitRatio = ((float)(hits)) / (hits + misses);
-    cout << " Total no. of page accesses : " << hits + misses << endl;
-    cout << " No. of hits : " << hits << endl;
-    cout << " No. of misses : " << misses << endl;
-    cout << " Hit ratio : " << hitRatio << endl;
-    return (1 - hitRatio);
+    // cout << " Total no. of page accesses : " << hits + misses << endl;
+    // cout << " No. of hits : " << hits << endl;
+    // cout << " No. of misses : " << misses << endl;
+    // cout << " Hit ratio : " << hitRatio << endl;
+    return misses;
 }
-
-// bool readNextPageNo(FILE* fp ,int* pageNo) {
-//     int retval;
-
-//     if(fp == NULL) {
-//         printf("error in opening file\n");
-//         // handle it
-//     }
-//     // note the null statement in the body of the loop
-//     retval = fscanf(fp, "%d", pageNo);
-//     // cout << *pageNo << " " << retval << endl;
-//     if(retval == 0) {
-//         // read value not an integer. matching failure
-//         cout << "Error while reading input from file.";
-//         return false;
-//     }
-
-//     if(retval == EOF) {
-//     // end of file reached or a read error occurred
-//     if(ferror(fp)) {
-//         // read error occurred in the stream fp
-//         // clear it
-//         clearerr(fp);
-//     }
-//     fclose(fp);
-//     return false;
-//   }
-//     return true;
-// }
-
-// int main() {
-//     int data, pageNo, i = 0, hits = 0, misses = 0;
-//     FILE *fp = fopen("input.txt", "r");
-//     WorkingSetPageReplacementFrame*  frame;
-//     vector<int> pageNoSeq;
-//     int frame_size;
-
-//     // Read all page no. in advance.
-//     while(readNextPageNo(fp, &data)) {
-//         if(i==0) {
-//             frame_size = data;
-//         } else {
-//             pageNo = data;
-//             pageNoSeq.push_back(pageNo);
-//         }
-//         i++;
-//     }
-
-//     int no_of_pages = i - 1;
-
-//     // Create Frame
-//     frame = new WorkingSetPageReplacementFrame(frame_size, pageNoSeq);
-//     int pos = 0;
-//     while(pos < no_of_pages) {
-//         int pageNo = pageNoSeq[pos];
-//         if(frame->accessPage(pageNo, pos)){
-//                 hits++;
-//         } else {
-//                 misses++;
-//         }
-//         pos++;
-//     }
-
-//     float hitRatio = ((float)(hits))/(hits + misses);
-//     cout << " Total no. of page accesses : " << hits + misses << endl;
-//     cout << " No. of hits : " << hits << endl;
-//     cout << " No. of misses : " << misses << endl;
-//     cout << " Hit ratio : " << hitRatio << endl;
-//     return 0;
-// }

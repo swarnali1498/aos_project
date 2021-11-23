@@ -78,78 +78,8 @@ class DLinkedList{
 
 };
 
-// class LRU{
 
-// 	int capacity, size, miss;
-// 	DLinkedList *n;
-// 	map<int, node*> m;
-
-// public:
-// 	LRU(int capacity){
-// 		this->capacity = capacity; size=0;
-// 		n = new DLinkedList();
-// 		m = map<int, node*>();
-// 		miss=0;
-// 	}
-
-// 	int get(int key){
-// 		if(m.find(key)==m.end()){
-// 			return -1;
-// 		}
-// 		int val = m[key]->value;
-
-// 		n->update_to_head(m[key]);
-// 		return val;
-// 	}
-
-// 	void put(int key,int val){
-// 		if(m.find(key)!=m.end()){
-// 			if(m[key]->value!=val){
-// 				miss++;
-// 			}
-// 			m[key]->value = val;
-// 			n->update_to_head(m[key]);
-// 			return;
-// 		}
-// 		if(size == capacity){
-// 			int i = n->get_tail()->key;
-// 			m.erase(i);
-// 			n->del_tail();
-// 			size--;
-// 		}
-
-// 		node *entry = n->add_at_beg(key,val);
-// 		size++; miss++;
-// 		m[key]=entry;
-// 	}
-
-// 	void print(int n, int l){
-// 		for(auto it=m.begin();it!=m.end();it++){
-// 			cout<<it->second->value<<" ";
-// 		}
-// 		// for(int i=0;i<n;i++){
-// 		// 	cout<<m[i]->value<<" "<<endl;
-// 		// }
-// 		cout<<"misses: "<<miss<<endl;
-// 		float mr=float(float(miss)/float(l)), hr = float(float(l-miss)/float(l));
-// 		cout<<"miss ratio: "<<setprecision(2)<<mr<<endl<<"Hit ratio: "<<setprecision(2)<<hr;
-
-
-// 	}
-
-
-// 	~LRU(){
-// 		map<int, node*>::iterator j;
-// 		for(j = m.begin();j!=m.end();j++){
-// 			delete j->second;
-// 		}
-// 		delete n;
-// 	}
-
-// };
-
-
-float LRU(int cap, vector<int> token){
+int LRU(int cap, vector<int> token){
 	int capacity, size, miss;
 	DLinkedList *n;
 	map<int, node*> m;
@@ -185,35 +115,8 @@ float LRU(int cap, vector<int> token){
 // 	for(auto it=m.begin();it!=m.end();it++){
 // 		cout<<it->second->value<<" ";
 // 	}
-	cout<<"misses: "<<miss<<endl;
+	//cout<<"misses: "<<miss<<endl;
 	float mr=float(float(miss)/float(l)), hr = float(float(l-miss)/float(l));
-	cout<<"miss ratio: "<<setprecision(2)<<mr<<endl<<"Hit ratio: "<<setprecision(2)<<hr<<endl;
-	return mr;
+	//cout<<"miss ratio: "<<setprecision(2)<<mr<<endl<<"Hit ratio: "<<setprecision(2)<<hr<<endl;
+	return miss;
 }
-
-// int main(){
-// 	int capacity,key,val;
-// 	cout<<"Enter Capacity"<<endl;
-// 	cin>>capacity;
-// 	// LRU cache(capacity);
-// 	cout<<"Enter input string"<<endl;
-// 	string upass;
-// 	cin.ignore();
-// 	getline(cin,upass);
-// 	stringstream ss(upass);
-// 	string temp;
-// 	vector<string> token;
-// 	while(getline(ss,temp,' '))	{
-// 		// key = stoi(temp);
-// 		// val = stoi(temp);
-// 		// cache.put(key,val);
-// 		token.push_back(temp);
-// 	}
-
-// 	int l = token.size();
-// 	LRU(capacity,token);
-// 	// cache.print(capacity,l);
-	
-
-// 	return 0;
-// }

@@ -77,7 +77,7 @@ private:
     set<int, greater<int>> _frame_buffer;
 };
 
-float random(int frame_size, vector<int> pageNoSeq)
+int random(int frame_size, vector<int> pageNoSeq)
 {
     int no_of_pages = pageNoSeq.size();
     int hits = 0, misses = 0;
@@ -99,63 +99,9 @@ float random(int frame_size, vector<int> pageNoSeq)
     }
 
     float hitRatio = ((float)(hits)) / (hits + misses);
-    cout << " Total no. of page accesses : " << hits + misses << endl;
+    /*cout << " Total no. of page accesses : " << hits + misses << endl;
     cout << " No. of hits : " << hits << endl;
     cout << " No. of misses : " << misses << endl;
-    cout << " Hit ratio : " << hitRatio << endl;
-    return (1 - hitRatio);
+    cout << " Hit ratio : " << hitRatio << endl;*/
+    return misses;
 }
-
-/*bool readNextPageNo(FILE* fp ,int* pageNo) {
-    int retval;
-
-    if(fp == NULL) {
-        printf("error in opening file\n");
-        // handle it
-    }
-    // note the null statement in the body of the loop
-    retval = fscanf(fp, "%d", pageNo);
-    // cout << *pageNo << " " << retval << endl;
-    if(retval == 0) {
-        // read value not an integer. matching failure
-        cout << "Error while reading input from file.";
-        return false;
-    }
-
-    if(retval == EOF) {
-    // end of file reached or a read error occurred
-    if(ferror(fp)) {
-        // read error occurred in the stream fp
-        // clear it
-        clearerr(fp);
-    }
-    fclose(fp);
-    return false;
-  }
-    return true;
-}
-
-int main() {
-    int data, pageNo, i = 0, hits = 0, misses = 0;
-    FILE *fp = fopen("input.txt", "r");
-    RandomPageReplacementFrame*  frame;
-    while(readNextPageNo(fp, &data)) {
-        if(i==0) {
-            frame = new RandomPageReplacementFrame(data);
-        } else {
-            pageNo = data;
-            if(frame->accessPage(pageNo)){
-                hits++;
-            } else {
-                misses++;
-            }
-        }
-        i++;
-    }
-    float hitRatio = ((float)(hits))/(hits + misses);
-    cout << " Total no. of page accesses : " << hits + misses << endl;
-    cout << " No. of hits : " << hits << endl;
-    cout << " No. of misses : " << misses << endl;
-    cout << " Hit ratio : " << hitRatio << endl;
-    return 0;
-}*/

@@ -1,4 +1,4 @@
-float clock(vector<int>& pages,int frames)
+int clock(vector<int>& pages,int frames)
 {
 	unordered_map<int,int> mp;
 	vector<int> v;
@@ -74,7 +74,8 @@ float clock(vector<int>& pages,int frames)
 	}
 	float hit_ratio=((float)hits)/(pages.size());
 	float miss_ratio=1-hit_ratio;
-	cout<<"Hit-ratio is "<<hit_ratio<<endl;
-	cout<<"Miss ratio is "<<miss_ratio<<endl;
-	return miss_ratio;
+	/*cout<<"Hit-ratio is "<<hit_ratio<<endl;
+	cout<<"Miss ratio is "<<miss_ratio<<endl;*/
+	int misses = pages.size() - hits;
+    return misses;
 }

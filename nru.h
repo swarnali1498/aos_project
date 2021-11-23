@@ -40,7 +40,7 @@ map<int, int> modify(set<int> unique)
     for (auto i = unique.begin(); i != unique.end(); i++)
         modified[*i] = 0;
     srand(time(0));
-    cout << "Modified Pages: ";
+    //cout << "Modified Pages: ";
     while (mod.size() != n / 2)
     {
         int x = rand() % n;
@@ -50,24 +50,24 @@ map<int, int> modify(set<int> unique)
     for (auto a : mod)
     {
         modified[a] = 1;
-        cout << a << " ";
+      //  cout << a << " ";
     }
-    cout << endl;
+    //cout << endl;
     return modified;
 }
 
 float performance(int n, int pageFault)
 {
-    cout << "Number of Page Faults: " << pageFault << endl;
+    //cout << "Number of Page Faults: " << pageFault << endl;
     double missRatio = double(pageFault) / n;
     double hitRatio = 1 - missRatio;
 
-    cout << "Hit Ratio: " << setprecision(2) << hitRatio << endl;
-    cout << "Miss Ratio: " << setprecision(2) << missRatio << endl;
+    //cout << "Hit Ratio: " << setprecision(2) << hitRatio << endl;
+    //cout << "Miss Ratio: " << setprecision(2) << missRatio << endl;
     return missRatio;
 }
 
-float NRU(vector<int> pages, int frames)
+int NRU(vector<int> pages, int frames)
 {
     // string s2;
     // stringstream s(str);
@@ -122,7 +122,7 @@ float NRU(vector<int> pages, int frames)
         // cout << endl;
     }
     float missRatio = performance(n, pageFault);
-    return missRatio;
+    return pageFault;
 }
 
 // int main()

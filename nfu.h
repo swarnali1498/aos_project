@@ -19,16 +19,16 @@ int replacePage2(unordered_map<int, int> table, unordered_map<int, int> counter)
 
 float performance2(int n, int pageFault)
 {
-    cout << "Number of Page Faults: " << pageFault << endl;
+    //cout << "Number of Page Faults: " << pageFault << endl;
     double missRatio = double(pageFault) / n;
     double hitRatio = 1 - missRatio;
 
-    cout << "Hit Ratio: " << setprecision(2) << hitRatio << endl;
-    cout << "Miss Ratio: " << setprecision(2) << missRatio << endl;
+    //cout << "Hit Ratio: " << setprecision(2) << hitRatio << endl;
+    //cout << "Miss Ratio: " << setprecision(2) << missRatio << endl;
     return missRatio;
 }
 
-float NFU(vector<int> pages, int frames)
+int NFU(vector<int> pages, int frames)
 {
     // string s2;
     // stringstream s(str);
@@ -73,7 +73,7 @@ float NFU(vector<int> pages, int frames)
         // cout << endl;
     }
     float missRatio = performance2(n, pageFault);
-    return missRatio;
+    return pageFault;
 }
 
 // int main()
