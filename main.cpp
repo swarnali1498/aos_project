@@ -59,10 +59,10 @@ void run_algo(int choice, int no_of_pages)
         {
             int frame_size = i;
                 if (choice == 1) {
-                mr = random(frame_size, pageNoSeq) 
+                mr = random(frame_size, pageNoSeq); 
             }
             if(choice == 2){
-                mr = optimal(frame_size, pageNoSeq) 
+                mr = optimal(frame_size, pageNoSeq); 
             }
             else if(choice == 3)
             {
@@ -89,7 +89,7 @@ void run_algo(int choice, int no_of_pages)
             }
             else if(choice == 9)
             {
-                mr = working_set(frame_size, pageNoSeq)                          
+                mr = working_set(frame_size, pageNoSeq);                          
             }
             else if(choice == 0){
                 break;
@@ -113,6 +113,16 @@ int main() {
     // vector<int> pageNoSeq;
 
     // Read all page no. in advance.
+    srand(time(0));
+    FILE* fp=fopen("input.txt","w");
+    for(int i=0;i<3000;i++)
+    {
+        int num = rand()%100;
+        fprintf(fp,"%d ",num);
+    }
+    fclose(fp);
+    
+    
     while(readNextPageNo(fp, &data)) {
         pageNo = data;
         pageNoSeq.push_back(pageNo);

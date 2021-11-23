@@ -7,6 +7,7 @@ float clock(vector<int>& pages,int frames)
 	
 	for(i=0;i<pages.size();i++)
 	{
+        //cout<<i<<endl;
 		if(mp.size()<frames)
 		{
 			if(mp.find(pages[i])==mp.end())
