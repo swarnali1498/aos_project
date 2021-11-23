@@ -1,33 +1,6 @@
 #include<bits/stdc++.h>
 using namespace std;
 
-/*int main()
-{
-	string p;
-	cout<<"Enter pages: "<<endl;
-	getline(cin,p);
-	vector<string> pages;
-	cout<<"Enter number of frames: "<<endl;
-	int frames;
-	cin>>frames;
-	for(i=0;i<p.size();i++)
-	{
-		if(p[i]==' ')
-		{
-			pages.push_back(temp);
-			temp="";
-		}
-		else
-		{
-			temp+=p[i];
-		}
-	}
-	if(temp!="")
-	{
-		pages.push_back(temp);
-	}
-*/
-
 float fifo(vector<int>& pages,int frames)
 {
 	unordered_set<int> s;
