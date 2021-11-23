@@ -87,44 +87,10 @@ int main() {
         {
             int frame_size = i;
                 if (choice == 1) {
-                RandomPageReplacementFrame*  frame;
-                frame = new RandomPageReplacementFrame(frame_size);
-                int pos = 0;
-                while(pos < no_of_pages) {
-                    int pageNo = pageNoSeq[pos];
-                    if(frame->accessPage(pageNo)){
-                            hits++;
-                    } else {
-                            misses++;
-                    }
-                    pos++;
-                }
-
-                float hitRatio = ((float)(hits))/(hits + misses);
-                cout << " Total no. of page accesses : " << hits + misses << endl;
-                cout << " No. of hits : " << hits << endl;
-                cout << " No. of misses : " << misses << endl;
-                cout << " Hit ratio : " << hitRatio << endl;            
+                mr = random(frame_size, pageNoSeq) 
             }
             if(choice == 2){
-                OptimalPageReplacementFrame*  frame;
-                frame = new OptimalPageReplacementFrame(frame_size, pageNoSeq);
-                int pos = 0;
-                while(pos < no_of_pages) {
-                    int pageNo = pageNoSeq[pos];
-                    if(frame->accessPage(pageNo, pos)){
-                            hits++;
-                    } else {
-                            misses++;
-                    }
-                    pos++;
-                }
-
-                float hitRatio = ((float)(hits))/(hits + misses);
-                cout << " Total no. of page accesses : " << hits + misses << endl;
-                cout << " No. of hits : " << hits << endl;
-                cout << " No. of misses : " << misses << endl;
-                cout << " Hit ratio : " << hitRatio << endl;
+                mr = optimal(frame_size, pageNoSeq) 
             }
             else if(choice == 3)
             {
@@ -147,23 +113,7 @@ int main() {
             }
             else if(choice == 9)
             {
-                WorkingSetPageReplacementFrame*  frame;
-                frame = new WorkingSetPageReplacementFrame(frame_size, pageNoSeq);
-                int pos = 0;
-                while(pos < no_of_pages) {
-                    int pageNo = pageNoSeq[pos];
-                    if(frame->accessPage(pageNo, pos)){
-                            hits++;
-                    } else {
-                            misses++;
-                    }
-                    pos++;
-                }
-                float hitRatio = ((float)(hits))/(hits + misses);
-                cout << " Total no. of page accesses : " << hits + misses << endl;
-                cout << " No. of hits : " << hits << endl;
-                cout << " No. of misses : " << misses << endl;
-                cout << " Hit ratio : " << hitRatio << endl;            
+                mr = working_set(frame_size, pageNoSeq)                          
             }
             else if(choice == 0){
                 break;
