@@ -182,12 +182,12 @@ void LRU(int cap, vector<int> token){
 		m[key]=entry;
 	}
 
-	for(auto it=m.begin();it!=m.end();it++){
-		cout<<it->second->value<<" ";
-	}
+// 	for(auto it=m.begin();it!=m.end();it++){
+// 		cout<<it->second->value<<" ";
+// 	}
 	cout<<"misses: "<<miss<<endl;
 	float mr=float(float(miss)/float(l)), hr = float(float(l-miss)/float(l));
-	cout<<"miss ratio: "<<setprecision(2)<<mr<<endl<<"Hit ratio: "<<setprecision(2)<<hr;
+	cout<<"miss ratio: "<<setprecision(2)<<mr<<endl<<"Hit ratio: "<<setprecision(2)<<hr<<endl;
 
 }
 
