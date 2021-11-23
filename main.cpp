@@ -95,7 +95,7 @@ int main() {
             cout << " Hit ratio : " << hitRatio << endl;
         }
         else if(choice == 6){
-            LRU_aos(frame_size,pageNoSeq);
+            LRU(frame_size,pageNoSeq);
         }
         else if(choice == 0){
             break;
