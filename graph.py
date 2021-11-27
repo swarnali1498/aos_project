@@ -1,156 +1,266 @@
 from matplotlib import pyplot as PLT
 
-fig = PLT.figure()
+# fig = PLT.figure()
 
-plt = fig.add_subplot(211)
+# plt = fig.add_subplot(211)
 
-plt1 = fig.add_subplot(212)
+# plt1 = fig.add_subplot(212)
+PLT.clf()
 
-x = []
-y = []
-z = []
+f_1 = PLT.figure(1)
+
+x1 = []
+y1 = []
+z1 = []
 f = open("random_output.txt", "r")
 with open('random_output.txt') as f:
     lines = f.readlines()
     for line in lines:
         coordinates = line.split(',')
-        x.append(int(coordinates[0]))
-        y.append(float(coordinates[1]))
-        z.append(int(coordinates[2]))
-plt.plot(x, y)
-plt1.plot(x, z, label="random")
+        x1.append(int(coordinates[0]))
+        y1.append(float(coordinates[1]))
+        z1.append(int(coordinates[2]))
+PLT.plot(x1, y1)
+# plt1.plot(x1, z1, label="random")
+PLT.title('Random Page Replacement Algorithm',fontsize=16)
+PLT.xlabel('No. of frames',fontsize=14)
+PLT.ylabel('Miss Ratio',fontsize=14)
 
-x = []
-y = []
-z = []
+f_1.savefig('random.png')
+
+PLT.clf()
+f_2 = PLT.figure(1)
+
+x2 = []
+y2 = []
+z2 = []
 f = open("optimal_output.txt", "r")
 with open('optimal_output.txt') as f:
     lines = f.readlines()
     for line in lines:
         coordinates = line.split(',')
-        x.append(int(coordinates[0]))
-        y.append(float(coordinates[1]))
-        z.append(int(coordinates[2]))
-plt.plot(x, y,label="optimal")
-plt1.plot(x, z,label="optimal")
+        x2.append(int(coordinates[0]))
+        y2.append(float(coordinates[1]))
+        z2.append(int(coordinates[2]))
+PLT.plot(x1, y2,label="optimal")
+# plt1.plot(x1, z2,label="optimal")
+PLT.title('Optimal Page Replacement Algorithm',fontsize=16)
+PLT.xlabel('No. of frames',fontsize=14)
+PLT.ylabel('Miss Ratio',fontsize=14)
 
-x = []
-y = []
-z = []
+f_2.savefig('optimal.png')
+
+
+PLT.clf()
+f_3 = PLT.figure(1)
+
+
+x3 = []
+y3 = []
+z3 = []
 f = open("nru_output.txt", "r")
 with open('nru_output.txt') as f:
     lines = f.readlines()
     for line in lines:
         coordinates = line.split(',')
-        x.append(int(coordinates[0]))
-        y.append(float(coordinates[1]))
-        z.append(int(coordinates[2]))
-plt.plot(x, y,label="nru")
-plt1.plot(x, z,label="nru")
+        x3.append(int(coordinates[0]))
+        y3.append(float(coordinates[1]))
+        z3.append(int(coordinates[2]))
+PLT.plot(x3, y3,label="nru")
+# plt1.plot(x3, z3,label="nru")
 
-x = []
-y = []
-z = []
+PLT.title('NRU Page Replacement Algorithm',fontsize=16)
+PLT.xlabel('No. of frames',fontsize=14)
+PLT.ylabel('Miss Ratio',fontsize=14)
+
+f_3.savefig('nru.png')
+
+
+PLT.clf()
+f_4 = PLT.figure(1)
+
+x4 = []
+y4 = []
+z4 = []
 f = open("fifo_output.txt", "r")
 with open('fifo_output.txt') as f:
     lines = f.readlines()
     for line in lines:
         coordinates = line.split(',')
-        x.append(int(coordinates[0]))
-        y.append(float(coordinates[1]))
-        z.append(int(coordinates[2]))
-plt.plot(x, y,label="fifo")
-plt1.plot(x, z,label="fifo")
+        x4.append(int(coordinates[0]))
+        y4.append(float(coordinates[1]))
+        z4.append(int(coordinates[2]))
+PLT.plot(x4, y4,label="fifo")
+# plt1.plot(x4, z4,label="fifo")
 
-x = []
-y = []
-z = []
+PLT.title('FIFO Page Replacement Algorithm',fontsize=16)
+PLT.xlabel('No. of frames',fontsize=14)
+PLT.ylabel('Miss Ratio',fontsize=14)
+
+f_4.savefig('fifo.png')
+
+PLT.clf()
+f_5 = PLT.figure(1)
+
+x5 = []
+y5 = []
+z5 = []
 f = open("fifo2nd_output.txt", "r")
 with open('fifo2nd_output.txt') as f:
     lines = f.readlines()
     for line in lines:
         coordinates = line.split(',')
-        x.append(int(coordinates[0]))
-        y.append(float(coordinates[1]))
-        z.append(int(coordinates[2]))
-plt.plot(x, y,label="fifo_2nd")
-plt1.plot(x, z,label="fifo_2nd")
+        x5.append(int(coordinates[0]))
+        y5.append(float(coordinates[1]))
+        z5.append(int(coordinates[2]))
+PLT.plot(x5, y5,label="fifo_2nd")
+# plt1.plot(x5, z5,label="fifo_2nd")
 
-x = []
-y = []
-z = []
+PLT.title('FIFO 2nd Chance Page Replacement Algorithm',fontsize=16)
+PLT.xlabel('No. of frames',fontsize=14)
+PLT.ylabel('Miss Ratio',fontsize=14)
+
+f_5.savefig('fifo_2nd.png')
+
+
+PLT.clf()
+f_6 = PLT.figure(1)
+
+x6 = []
+y6 = []
+z6 = []
 f = open("clock_output.txt", "r")
 with open('clock_output.txt') as f:
     lines = f.readlines()
     for line in lines:
         coordinates = line.split(',')
-        x.append(int(coordinates[0]))
-        y.append(float(coordinates[1]))
-        z.append(int(coordinates[2]))
-plt.plot(x, y,label="clock")
-plt1.plot(x, z,label="clock")
+        x6.append(int(coordinates[0]))
+        y6.append(float(coordinates[1]))
+        z6.append(int(coordinates[2]))
+PLT.plot(x6, y6,label="clock")
+# plt1.plot(x6, z6,label="clock")
 
-x = []
-y = []
-z = []
+PLT.title('Clock Page Replacement Algorithm',fontsize=16)
+PLT.xlabel('No. of frames',fontsize=14)
+PLT.ylabel('Miss Ratio',fontsize=14)
+
+f_5.savefig('clock.png')
+
+PLT.clf()
+f_7 = PLT.figure(1)
+
+x7 = []
+y7 = []
+z7 = []
 f = open("lru_output.txt", "r")
 with open('lru_output.txt') as f:
     lines = f.readlines()
     for line in lines:
         coordinates = line.split(',')
-        x.append(int(coordinates[0]))
-        y.append(float(coordinates[1]))
-        z.append(int(coordinates[2]))
-plt.plot(x, y,label="lru")
-plt1.plot(x, z,label="lru")
+        x7.append(int(coordinates[0]))
+        y7.append(float(coordinates[1]))
+        z7.append(int(coordinates[2]))
+PLT.plot(x7, y7,label="lru")
+# plt1.plot(x7, z7,label="lru")
 
-x = []
-y = []
-z = []
+PLT.title('LRU Page Replacement Algorithm',fontsize=16)
+PLT.xlabel('No. of frames',fontsize=14)
+PLT.ylabel('Miss Ratio',fontsize=14)
+
+f_7.savefig('lru.png')
+
+PLT.clf()
+f_8 = PLT.figure(1)
+
+x8 = []
+y8 = []
+z8 = []
 f = open("nfu_output.txt", "r")
 with open('nfu_output.txt') as f:
     lines = f.readlines()
     for line in lines:
         coordinates = line.split(',')
-        x.append(int(coordinates[0]))
-        y.append(float(coordinates[1]))
-        z.append(int(coordinates[2]))
-plt.plot(x, y,label="nfu")
-plt1.plot(x, z,label="nfu")
+        x8.append(int(coordinates[0]))
+        y8.append(float(coordinates[1]))
+        z8.append(int(coordinates[2]))
+PLT.plot(x8, y8,label="nfu")
+# plt1.plot(x8, z8,label="nfu")
 
-x = []
-y = []
-z = []
+PLT.title('NFU Page Replacement Algorithm',fontsize=16)
+PLT.xlabel('No. of frames',fontsize=14)
+PLT.ylabel('Miss Ratio',fontsize=14)
+
+f_8.savefig('nfu.png')
+
+PLT.clf()
+f_9 = PLT.figure(1)
+
+x9 = []
+y9 = []
+z9 = []
 f = open("workingset_output.txt", "r")
 with open('workingset_output.txt') as f:
     lines = f.readlines()
     for line in lines:
         coordinates = line.split(',')
-        x.append(int(coordinates[0]))
-        y.append(float(coordinates[1]))
-        z.append(int(coordinates[2]))
-plt.plot(x, y,label="workingset")
-plt1.plot(x, z,label="workingset")
+        x9.append(int(coordinates[0]))
+        y9.append(float(coordinates[1]))
+        z9.append(int(coordinates[2]))
+PLT.plot(x9, y9,label="workingset")
+# plt1.plot(x9, z9,label="workingset")
+
+PLT.title('Working Set Page Replacement Algorithm',fontsize=16)
+PLT.xlabel('No. of frames',fontsize=14)
+PLT.ylabel('Miss Ratio',fontsize=14)
+
+f_9.savefig('workingset.png')
+
+# PLT.set_ylabel('Miss Ratio')
+
+# PLT.set_xlabel('No. of frames')
+# PLT.set_ylabel('No. of swaps')
 
 
-plt.set_ylabel('Miss Ratio')
 
-plt1.set_xlabel('No. of frames')
-plt1.set_ylabel('No. of swaps')
-
-
-
-plt.set_title('Page Replacement Simulation')
-'''PLT.xlabel('No. of frames')
-PLT.ylabel('Miss Ratio')
-#PLT.title('Page Replacement Simulation')'''
-PLT.legend(loc='best')
+# PLT.set_title('Page Replacement Simulation')
+# '''PLT.xlabel('No. of frames')
+# PLT.ylabel('Miss Ratio')
+# #PLT.title('Page Replacement Simulation')'''
+# PLT.legend(loc='best')
 
 '''plt1.xlabel('No. of frames')
 plt1.ylabel('No. of swaps')
 plt1.legend(loc='best')'''
 
 #plt.show()
-#plt1.show()
+# f_all.show()
 
 PLT.savefig('graph1.png')
+
+
+# f1 = PLT.figure(1)
+
+# PLT.plot(x9, y9,label="workingset")
+
+# f1.savefig('workingset_graph.png')
+
+# f2 = plt.figure(2)
+
+# f3 = plt.figure(3)
+
+# f4 = plt.figure(4)
+
+# f5 = plt.figure(5)
+
+# f6 = plt.figure(6)
+
+# f7 = plt.figure(7)
+
+# f8 = plt.figure(8)
+
+# f9 = plt.figure(9)
+
+# f10 = plt.figure(10)
+
+# f11 = plt.figure(11)
+
