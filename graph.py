@@ -1,11 +1,11 @@
-from matplotlib import pyplot as PLT
-
+from matplotlib import pyplot as plt
+'''
 fig = PLT.figure()
 
 plt = fig.add_subplot(211)
 
 plt1 = fig.add_subplot(212)
-
+'''
 x = []
 y = []
 z = []
@@ -17,8 +17,7 @@ with open('random_output.txt') as f:
         x.append(int(coordinates[0]))
         y.append(float(coordinates[1]))
         z.append(int(coordinates[2]))
-plt.plot(x, y)
-plt1.plot(x, z, label="random")
+plt.plot(x, y, label="random")
 
 x = []
 y = []
@@ -32,7 +31,6 @@ with open('optimal_output.txt') as f:
         y.append(float(coordinates[1]))
         z.append(int(coordinates[2]))
 plt.plot(x, y,label="optimal")
-plt1.plot(x, z,label="optimal")
 
 x = []
 y = []
@@ -46,7 +44,6 @@ with open('nru_output.txt') as f:
         y.append(float(coordinates[1]))
         z.append(int(coordinates[2]))
 plt.plot(x, y,label="nru")
-plt1.plot(x, z,label="nru")
 
 x = []
 y = []
@@ -60,7 +57,6 @@ with open('fifo_output.txt') as f:
         y.append(float(coordinates[1]))
         z.append(int(coordinates[2]))
 plt.plot(x, y,label="fifo")
-plt1.plot(x, z,label="fifo")
 
 x = []
 y = []
@@ -74,7 +70,6 @@ with open('fifo2nd_output.txt') as f:
         y.append(float(coordinates[1]))
         z.append(int(coordinates[2]))
 plt.plot(x, y,label="fifo_2nd")
-plt1.plot(x, z,label="fifo_2nd")
 
 x = []
 y = []
@@ -88,7 +83,6 @@ with open('clock_output.txt') as f:
         y.append(float(coordinates[1]))
         z.append(int(coordinates[2]))
 plt.plot(x, y,label="clock")
-plt1.plot(x, z,label="clock")
 
 x = []
 y = []
@@ -102,7 +96,6 @@ with open('lru_output.txt') as f:
         y.append(float(coordinates[1]))
         z.append(int(coordinates[2]))
 plt.plot(x, y,label="lru")
-plt1.plot(x, z,label="lru")
 
 x = []
 y = []
@@ -116,7 +109,6 @@ with open('nfu_output.txt') as f:
         y.append(float(coordinates[1]))
         z.append(int(coordinates[2]))
 plt.plot(x, y,label="nfu")
-plt1.plot(x, z,label="nfu")
 
 x = []
 y = []
@@ -130,21 +122,44 @@ with open('workingset_output.txt') as f:
         y.append(float(coordinates[1]))
         z.append(int(coordinates[2]))
 plt.plot(x, y,label="workingset")
-plt1.plot(x, z,label="workingset")
+
+x = []
+y = []
+z = []
+f = open("aging_output.txt", "r")
+with open('aging_output.txt') as f:
+    lines = f.readlines()
+    for line in lines:
+        coordinates = line.split(',')
+        x.append(int(coordinates[0]))
+        y.append(float(coordinates[1]))
+        z.append(int(coordinates[2]))
+plt.plot(x, y,label="aging")
+
+x = []
+y = []
+z = []
+f = open("wsclock_output.txt", "r")
+with open('wsclock_output.txt') as f:
+    lines = f.readlines()
+    for line in lines:
+        coordinates = line.split(',')
+        x.append(int(coordinates[0]))
+        y.append(float(coordinates[1]))
+        z.append(int(coordinates[2]))
+plt.plot(x, y,label="wsclock")
 
 
-plt.set_ylabel('Miss Ratio')
 
-plt1.set_xlabel('No. of frames')
-plt1.set_ylabel('No. of swaps')
+plt.ylabel('Miss Ratio')
 
+plt.xlabel('No. of frames')
 
-
-plt.set_title('Page Replacement Simulation')
+plt.title('Page Replacement Simulation')
 '''PLT.xlabel('No. of frames')
 PLT.ylabel('Miss Ratio')
 #PLT.title('Page Replacement Simulation')'''
-PLT.legend(loc='best')
+plt.legend(loc='best')
 
 '''plt1.xlabel('No. of frames')
 plt1.ylabel('No. of swaps')
@@ -153,4 +168,4 @@ plt1.legend(loc='best')'''
 #plt.show()
 #plt1.show()
 
-PLT.savefig('graph1.png')
+plt.savefig('graph1.png')
