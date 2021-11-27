@@ -11,9 +11,6 @@
 #include <algorithm>
 #include <queue>
 
-// Input Frame Size
-// Input data - one number at a time.
-//
 
 using namespace std;
 
@@ -122,9 +119,5 @@ int working_set(int frame_size, vector<int> pageNoSeq)
         pos++;
     }
     float hitRatio = ((float)(hits)) / (hits + misses);
-    // cout << " Total no. of page accesses : " << hits + misses << endl;
-    // cout << " No. of hits : " << hits << endl;
-    // cout << " No. of misses : " << misses << endl;
-    // cout << " Hit ratio : " << hitRatio << endl;
     return misses;
 }

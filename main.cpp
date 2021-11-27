@@ -62,6 +62,26 @@ void run_algo(int no_of_pages)
     int i, j;
     int nm;
     float mr;
+    
+    string out_file = "output.txt";
+
+    FILE *out_file_ptr;
+    out_file_ptr = fopen(out_file.c_str(), "w");
+
+    // no. of frames, hit ratio, miss ratio, no of swaps
+    vector<string> random_v;
+    vector<string> optimal_v;
+    vector<string> nru_v;
+    vector<string> fifo_v;
+    vector<string> fifo2nd_v;
+    vector<string> clock_v;
+    vector<string> lru_v;
+    vector<string> nfu_v;
+    vector<string> workingset_v;
+    vector<string> aging_v;
+    vector<string> wsclock_v;
+
+
     //----------------------------------------------------
     FILE *random_pt;
     random_pt = fopen("random_output.txt", "w");
@@ -102,7 +122,9 @@ void run_algo(int no_of_pages)
             swaps = 0;
         }
         string coordinates = to_string(i) + "," + to_string((float(nm)) / no_of_pages) + "," + to_string(swaps) + "\n";
-        // // cout << coordinates;
+        // cout << coordinates;
+        string data = to_string(i) + "\t\t" + to_string((float(nm)) / no_of_pages) + "\t" + to_string((float(no_of_pages - nm)) / no_of_pages) + "\t\t" + to_string(swaps) + "\n";
+        random_v.push_back(data);
         fprintf(random_pt, "%s", coordinates.c_str());
         //--------------------------------------------------------------
 
@@ -119,6 +141,8 @@ void run_algo(int no_of_pages)
         }
         coordinates = to_string(i) + "," + to_string((float(nm)) / no_of_pages) + "," + to_string(swaps) + "\n";
         // cout << coordinates;
+        data = to_string(i) + "\t\t" + to_string((float(nm)) / no_of_pages) + "\t" + to_string((float(no_of_pages - nm)) / no_of_pages) + "\t\t" + to_string(swaps) + "\n";
+        optimal_v.push_back(data);
         fprintf(optimal_pt, "%s", coordinates.c_str());
         //--------------------------------------------------------------
 
@@ -135,6 +159,8 @@ void run_algo(int no_of_pages)
         }
         coordinates = to_string(i) + "," + to_string((float(nm)) / no_of_pages) + "," + to_string(swaps) + "\n";
         // cout << coordinates;
+        data = to_string(i) + "\t\t" + to_string((float(nm)) / no_of_pages) + "\t" + to_string((float(no_of_pages - nm)) / no_of_pages) + "\t\t" + to_string(swaps) + "\n";
+        nru_v.push_back(data);
         fprintf(nru_pt, "%s", coordinates.c_str());
         //--------------------------------------------------------------
 
@@ -151,6 +177,8 @@ void run_algo(int no_of_pages)
         }
         coordinates = to_string(i) + "," + to_string((float(nm)) / no_of_pages) + "," + to_string(swaps) + "\n";
         // cout << coordinates;
+        data = to_string(i) + "\t\t" + to_string((float(nm)) / no_of_pages) + "\t" + to_string((float(no_of_pages - nm)) / no_of_pages) + "\t\t" + to_string(swaps) + "\n";
+        fifo_v.push_back(data);
         fprintf(fifo_pt, "%s", coordinates.c_str());
         //--------------------------------------------------------------
 
@@ -167,6 +195,8 @@ void run_algo(int no_of_pages)
         }
         coordinates = to_string(i) + "," + to_string((float(nm)) / no_of_pages) + "," + to_string(swaps) + "\n";
         // cout << coordinates;
+        data = to_string(i) + "\t\t" + to_string((float(nm)) / no_of_pages) + "\t" + to_string((float(no_of_pages - nm)) / no_of_pages) + "\t\t" + to_string(swaps) + "\n";
+        fifo2nd_v.push_back(data);
         fprintf(fifo2nd_pt, "%s", coordinates.c_str());
         //--------------------------------------------------------------
 
@@ -183,6 +213,8 @@ void run_algo(int no_of_pages)
         }
         coordinates = to_string(i) + "," + to_string((float(nm)) / no_of_pages) + "," + to_string(swaps) + "\n";
         // // cout << coordinates;
+        data = to_string(i) + "\t\t" + to_string((float(nm)) / no_of_pages) + "\t" + to_string((float(no_of_pages - nm)) / no_of_pages) + "\t\t" + to_string(swaps) + "\n";
+        clock_v.push_back(data);        
         fprintf(clock_pt, "%s", coordinates.c_str());
         //--------------------------------------------------------------
 
@@ -199,6 +231,8 @@ void run_algo(int no_of_pages)
         }
         coordinates = to_string(i) + "," + to_string((float(nm)) / no_of_pages) + "," + to_string(swaps) + "\n";
         // // cout << coordinates;
+        data = to_string(i) + "\t\t" + to_string((float(nm)) / no_of_pages) + "\t" + to_string((float(no_of_pages - nm)) / no_of_pages) + "\t\t" + to_string(swaps) + "\n";
+        lru_v.push_back(data);        
         fprintf(lru_pt, "%s", coordinates.c_str());
         //--------------------------------------------------------------
 
@@ -215,6 +249,8 @@ void run_algo(int no_of_pages)
         }
         coordinates = to_string(i) + "," + to_string((float(nm)) / no_of_pages) + "," + to_string(swaps) + "\n";
         // // cout << coordinates;
+        data = to_string(i) + "\t\t" + to_string((float(nm)) / no_of_pages) + "\t" + to_string((float(no_of_pages - nm)) / no_of_pages) + "\t\t" + to_string(swaps) + "\n";
+        nfu_v.push_back(data);       
         fprintf(nfu_pt, "%s", coordinates.c_str());
         //--------------------------------------------------------------
 
@@ -231,6 +267,8 @@ void run_algo(int no_of_pages)
         }
         coordinates = to_string(i) + "," + to_string((float(nm)) / no_of_pages) + "," + to_string(swaps) + "\n";
         // // cout << coordinates;
+        data = to_string(i) + "\t\t" + to_string((float(nm)) / no_of_pages) + "\t" + to_string((float(no_of_pages - nm)) / no_of_pages) + "\t\t" + to_string(swaps) + "\n";
+        workingset_v.push_back(data);
         fprintf(workingset_pt, "%s", coordinates.c_str());
         //--------------------------------------------------------------
         coordinates = "";
@@ -246,6 +284,8 @@ void run_algo(int no_of_pages)
         }
         coordinates = to_string(i) + "," + to_string((float(nm)) / no_of_pages) + "," + to_string(swaps) + "\n";
         // // cout << coordinates;
+        data = to_string(i) + "\t\t" + to_string((float(nm)) / no_of_pages) + "\t" + to_string((float(no_of_pages - nm)) / no_of_pages) + "\t\t" + to_string(swaps) + "\n";
+        aging_v.push_back(data);
         fprintf(aging_pt, "%s", coordinates.c_str());
         //--------------------------------------------------------------
         coordinates = "";
@@ -260,7 +300,9 @@ void run_algo(int no_of_pages)
             swaps = 0;
         }
         coordinates = to_string(i) + "," + to_string((float(nm)) / no_of_pages) + "," + to_string(swaps) + "\n";
-        // // cout << coordinates;
+        // cout << coordinates;
+        data = to_string(i) + "\t\t" + to_string((float(nm)) / no_of_pages) + "\t" + to_string((float(no_of_pages - nm)) / no_of_pages) + "\t\t" + to_string(swaps) + "\n";
+        wsclock_v.push_back(data);        
         fprintf(wsclock_pt, "%s", coordinates.c_str());
         //--------------------------------------------------------------
     }
@@ -286,15 +328,127 @@ void run_algo(int no_of_pages)
     fp = _Py_fopen(filename, "r");
     PyRun_SimpleFile(fp, filename);
 
-    char filename1[] = "graph1.py";
-
-    fp = _Py_fopen(filename1, "r");
-    PyRun_SimpleFile(fp, filename1);
-
     Py_Finalize();
 
-    //remove("optimal_output.txt");
+    // Write to output file
+    string columns = "Frames\tHit_Ratio\tMiss_Ratio\tNo_Of_Swaps\n";
+    int len = random_v.size();
+
+    // Random
+    string title = "====== RANDOM PAGE REPLACEMENT ALGORITHM RESULTS =======\n";
+    fprintf(out_file_ptr, "%s", title.c_str());
+    fprintf(out_file_ptr, "%s", columns.c_str());
+    for(int i=0; i<len; i++){
+        fprintf(out_file_ptr, "%s", random_v[i].c_str());
+    }
+
+    fprintf(out_file_ptr, "\n");
+
+
+    // Optimal
+    title = "====== Optimal PAGE REPLACEMENT ALGORITHM RESULTS =======\n";
+    fprintf(out_file_ptr, "%s", title.c_str());
+    fprintf(out_file_ptr, "%s", columns.c_str());
+    for(int i=0; i<len; i++){
+        fprintf(out_file_ptr, "%s", optimal_v[i].c_str());
+    }
+
+    fprintf(out_file_ptr, "\n");
+
+
+    // NRU
+    title = "====== NRU PAGE REPLACEMENT ALGORITHM RESULTS =======\n";
+    fprintf(out_file_ptr, "%s", title.c_str());
+    fprintf(out_file_ptr, "%s", columns.c_str());
+    for(int i=0; i<len; i++){
+        fprintf(out_file_ptr, "%s", nru_v[i].c_str());
+    }
+
+    fprintf(out_file_ptr, "\n");
+
+    // FIFO
+    title = "====== FIFO PAGE REPLACEMENT ALGORITHM RESULTS =======\n";
+    fprintf(out_file_ptr, "%s", title.c_str());
+    fprintf(out_file_ptr, "%s", columns.c_str());
+    for(int i=0; i<len; i++){
+        fprintf(out_file_ptr, "%s", fifo_v[i].c_str());
+    }
+
+    fprintf(out_file_ptr, "\n");
+
+    // FIFO 2ND CHANCE
+    title = "====== FIFO 2ND CHANCE PAGE REPLACEMENT ALGORITHM RESULTS =======\n";
+    fprintf(out_file_ptr, "%s", title.c_str());
+    fprintf(out_file_ptr, "%s", columns.c_str());
+    for(int i=0; i<len; i++){
+        fprintf(out_file_ptr, "%s", fifo2nd_v[i].c_str());
+    }
+
+    fprintf(out_file_ptr, "\n");
+
+    // CLOCK
+    title = "====== CLOCK REPLACEMENT ALGORITHM RESULTS =======\n";
+    fprintf(out_file_ptr, "%s", title.c_str());
+    fprintf(out_file_ptr, "%s", columns.c_str());
+    for(int i=0; i<len; i++){
+        fprintf(out_file_ptr, "%s", clock_v[i].c_str());
+    }
+
+    fprintf(out_file_ptr, "\n");
+
+    // LRU
+    title = "====== LRU PAGE REPLACEMENT ALGORITHM RESULTS =======\n";
+    fprintf(out_file_ptr, "%s", title.c_str());
+    fprintf(out_file_ptr, "%s", columns.c_str());
+    for(int i=0; i<len; i++){
+        fprintf(out_file_ptr, "%s", lru_v[i].c_str());
+    }
+
+    fprintf(out_file_ptr, "\n");
+
+    // NFU
+    title = "====== NFU PAGE REPLACEMENT ALGORITHM RESULTS =======\n";
+    fprintf(out_file_ptr, "%s", title.c_str());
+    fprintf(out_file_ptr, "%s", columns.c_str());
+    for(int i=0; i<len; i++){
+        fprintf(out_file_ptr, "%s", nfu_v[i].c_str());
+    }
+
+    fprintf(out_file_ptr, "\n");
+
+    // WORKING SET
+    title = "====== WORKING SET PAGE REPLACEMENT ALGORITHM RESULTS =======\n";
+    fprintf(out_file_ptr, "%s", title.c_str());
+    fprintf(out_file_ptr, "%s", columns.c_str());
+    for(int i=0; i<len; i++){
+        fprintf(out_file_ptr, "%s", workingset_v[i].c_str());
+    }
+
+    fprintf(out_file_ptr, "\n");
+
+    // AGING
+    title = "====== AGING PAGE REPLACEMENT ALGORITHM RESULTS =======\n";
+    fprintf(out_file_ptr, "%s", title.c_str());
+    fprintf(out_file_ptr, "%s", columns.c_str());
+    for(int i=0; i<len; i++){
+        fprintf(out_file_ptr, "%s", aging_v[i].c_str());
+    }
+
+    fprintf(out_file_ptr, "\n");
+
+    // WSCLOCK
+    title = "====== WSCLOCK PAGE REPLACEMENT ALGORITHM RESULTS =======\n";
+    fprintf(out_file_ptr, "%s", title.c_str());
+    fprintf(out_file_ptr, "%s", columns.c_str());
+    for(int i=0; i<len; i++){
+        fprintf(out_file_ptr, "%s", wsclock_v[i].c_str());
+    }
+
+    fclose(out_file_ptr);
+
+    // Remove temp files
     remove("random_output.txt");
+    remove("optimal_output.txt");
     remove("nru_output.txt");
     remove("nfu_output.txt");
     remove("fifo_output.txt");
@@ -308,10 +462,6 @@ void run_algo(int no_of_pages)
 
 int main()
 {
-    // int data, pageNo, i = 0, hits = 0, misses = 0;
-    // FILE *fp = fopen("input.txt", "r");
-    // vector<int> pageNoSeq;
-
     srand(time(0));
     FILE *fp = fopen("input.txt", "w");
     for (int i = 0; i < 100; i++)
@@ -323,7 +473,6 @@ int main()
 
     fp = fopen("input.txt", "r");
 
-    // Read all page no. in advance.
     while (readNextPageNo(fp, &data))
     {
         pageNo = data;

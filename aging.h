@@ -1,13 +1,3 @@
-// #include <iostream>
-// #include <string.h>
-// #include <vector>
-// #include<sstream>
-// #include <iomanip>
-// #include <math.h>
-// #include<map>
-//#define ll long long int
-
-// using namespace std;
 
 int w=5;
 
