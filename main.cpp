@@ -13,6 +13,8 @@
 #include "clock.h"
 #include "nfu.h"
 #include "nru.h"
+#include "aging.h"
+#include "wsclock.h"
 #include <Python.h>
 
 void run_algo(int choice);
@@ -205,7 +207,7 @@ void run_algo(int no_of_pages)
             }
             coordinates = to_string(i) + "," + to_string((float(nm))/no_of_pages) + "," + to_string(swaps) + "\n";
             // cout << coordinates;
-            fprintf(aging_pt), "%s", coordinates.c_str());
+            fprintf(aging_pt, "%s", coordinates.c_str());
             //--------------------------------------------------------------
             coordinates = "";
             //----------------------WSClock-----------------------------
@@ -241,7 +243,13 @@ void run_algo(int no_of_pages)
     fp = _Py_fopen(filename, "r");
     PyRun_SimpleFile(fp, filename);
 
+    char filename1[] = "graph1.py";
+
+    fp = _Py_fopen(filename1, "r");
+    PyRun_SimpleFile(fp, filename1);
+
     Py_Finalize();
+
 
     remove("optimal_output.txt");
     remove("random_output.txt");
@@ -252,6 +260,8 @@ void run_algo(int no_of_pages)
     remove("lru_output.txt");
     remove("workingset_output.txt");
     remove("clock_output.txt");
+    remove("aging_output.txt");
+    remove("wsclock_output.txt");
 }
 
 int main()
