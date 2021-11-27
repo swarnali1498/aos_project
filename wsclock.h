@@ -55,7 +55,7 @@ int wsclock(int cap, vector<int> token){
                 else if((i-pg1[j].time)>=thresh){
                     pg1[j].key = key1;
                     pg1[j].time = i;
-                    pg1[j].R = 1;
+                    pg1[j].R = 0;
                     miss++;
                     break;
                 }
