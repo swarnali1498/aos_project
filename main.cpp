@@ -79,14 +79,23 @@ void run_algo(int no_of_pages)
     nfu_pt = fopen("nfu_output.txt", "w");
     FILE *workingset_pt;
     workingset_pt = fopen("workingset_output.txt", "w");
+    FILE *aging_pt;
+    aging_pt = fopen("aging_output.txt", "w");
+    FILE *wsclock_pt;
+    wsclock_pt = fopen("wsclock_output.txt", "w");
     //-----------------------------------------------------
 
     for (i = 14; i < 20; i++)
     {
             int frame_size = i;
+            int swaps=0;
             //----------------------Random----------------------------------
             nm = random(frame_size, pageNoSeq);
-            string coordinates = to_string(i) + "," + to_string((float(nm))/no_of_pages) + "," + to_string(nm) + "\n";
+            if(nm>i)
+            {
+                swaps=nm-i;
+            }
+            string coordinates = to_string(i) + "," + to_string((float(nm))/no_of_pages) + "," + to_string(swaps) + "\n";
             //cout << coordinates;
             fprintf(random_pt, "%s", coordinates.c_str());
             //--------------------------------------------------------------
@@ -94,7 +103,11 @@ void run_algo(int no_of_pages)
             coordinates = "";
             //----------------------Optimal---------------------------------
             nm = optimal(frame_size, pageNoSeq);
-            coordinates = to_string(i) + "," + to_string((float(nm))/no_of_pages) + "," + to_string(nm) + "\n";
+            if(nm>i)
+            {
+                swaps=nm-i;
+            }
+            coordinates = to_string(i) + "," + to_string((float(nm))/no_of_pages) + "," + to_string(swaps) + "\n";
             // cout << coordinates;
             fprintf(optimal_pt, "%s", coordinates.c_str());
             //--------------------------------------------------------------
@@ -102,7 +115,11 @@ void run_algo(int no_of_pages)
             coordinates = "";
             //----------------------NRU-------------------------------------
             nm = NRU(pageNoSeq, frame_size);
-            coordinates = to_string(i) + "," + to_string((float(nm))/no_of_pages) + "," + to_string(nm) + "\n";
+            if(nm>i)
+            {
+                swaps=nm-i;
+            }
+            coordinates = to_string(i) + "," + to_string((float(nm))/no_of_pages) + "," + to_string(swaps) + "\n";
             // cout << coordinates;
             fprintf(nru_pt, "%s", coordinates.c_str());
             //--------------------------------------------------------------
@@ -110,7 +127,11 @@ void run_algo(int no_of_pages)
             coordinates = "";
             //----------------------FIFO------------------------------------
             nm = fifo(pageNoSeq, frame_size);
-            coordinates = to_string(i) + "," + to_string((float(nm))/no_of_pages) + "," + to_string(nm) + "\n";
+            if(nm>i)
+            {
+                swaps=nm-i;
+            }
+            coordinates = to_string(i) + "," + to_string((float(nm))/no_of_pages) + "," + to_string(swaps) + "\n";
             // cout << coordinates;
             fprintf(fifo_pt, "%s", coordinates.c_str());
             //--------------------------------------------------------------
@@ -118,7 +139,11 @@ void run_algo(int no_of_pages)
             coordinates = "";
             //----------------------FIFO second chance----------------------
             nm = fifo_secondchance(pageNoSeq, frame_size);
-            coordinates = to_string(i) + "," + to_string((float(nm))/no_of_pages) + "," + to_string(nm) + "\n";
+            if(nm>i)
+            {
+                swaps=nm-i;
+            }
+            coordinates = to_string(i) + "," + to_string((float(nm))/no_of_pages) + "," + to_string(swaps) + "\n";
             // cout << coordinates;
             fprintf(fifo2nd_pt, "%s", coordinates.c_str());
             //--------------------------------------------------------------
@@ -126,7 +151,11 @@ void run_algo(int no_of_pages)
             coordinates = "";
             //----------------------Clock----------------------
             nm = clock(pageNoSeq, frame_size);
-            coordinates = to_string(i) + "," + to_string((float(nm))/no_of_pages) + "," + to_string(nm) + "\n";
+            if(nm>i)
+            {
+                swaps=nm-i;
+            }
+            coordinates = to_string(i) + "," + to_string((float(nm))/no_of_pages) + "," + to_string(swaps) + "\n";
             // cout << coordinates;
             fprintf(clock_pt, "%s", coordinates.c_str());
             //--------------------------------------------------------------
@@ -135,7 +164,11 @@ void run_algo(int no_of_pages)
             coordinates = "";
             //----------------------LRU-------------------------------------
             nm = LRU(frame_size, pageNoSeq);
-            coordinates = to_string(i) + "," + to_string((float(nm))/no_of_pages) + "," + to_string(nm) + "\n";
+            if(nm>i)
+            {
+                swaps=nm-i;
+            }
+            coordinates = to_string(i) + "," + to_string((float(nm))/no_of_pages) + "," + to_string(swaps) + "\n";
             // cout << coordinates;
             fprintf(lru_pt, "%s", coordinates.c_str());
             //--------------------------------------------------------------
@@ -143,7 +176,11 @@ void run_algo(int no_of_pages)
             coordinates = "";
             //----------------------NFU-------------------------------------
             nm = NFU(pageNoSeq, frame_size);
-            coordinates = to_string(i) + "," + to_string((float(nm))/no_of_pages) + "," + to_string(nm) + "\n";
+            if(nm>i)
+            {
+                swaps=nm-i;
+            }
+            coordinates = to_string(i) + "," + to_string((float(nm))/no_of_pages) + "," + to_string(swaps) + "\n";
             // cout << coordinates;
             fprintf(nfu_pt, "%s", coordinates.c_str());
             //--------------------------------------------------------------
@@ -151,9 +188,35 @@ void run_algo(int no_of_pages)
             coordinates = "";
             //----------------------Working Set-----------------------------
             nm = working_set(frame_size, pageNoSeq);
-            coordinates = to_string(i) + "," + to_string((float(nm))/no_of_pages) + "," + to_string(nm) + "\n";
+            if(nm>i)
+            {
+                swaps=nm-i;
+            }
+            coordinates = to_string(i) + "," + to_string((float(nm))/no_of_pages) + "," + to_string(swaps) + "\n";
             // cout << coordinates;
             fprintf(workingset_pt, "%s", coordinates.c_str());
+            //--------------------------------------------------------------
+            coordinates = "";
+            //----------------------Aging(Approx. LRU)-----------------------------
+            nm = approx_LRU(frame_size, pageNoSeq);
+            if(nm>i)
+            {
+                swaps=nm-i;
+            }
+            coordinates = to_string(i) + "," + to_string((float(nm))/no_of_pages) + "," + to_string(swaps) + "\n";
+            // cout << coordinates;
+            fprintf(aging_pt), "%s", coordinates.c_str());
+            //--------------------------------------------------------------
+            coordinates = "";
+            //----------------------WSClock-----------------------------
+            nm = wsclock(frame_size, pageNoSeq);
+            if(nm>i)
+            {
+                swaps=nm-i;
+            }
+            coordinates = to_string(i) + "," + to_string((float(nm))/no_of_pages) + "," + to_string(swaps) + "\n";
+            // cout << coordinates;
+            fprintf(wsclock_pt, "%s", coordinates.c_str());
             //--------------------------------------------------------------
     }
     //--------------------------------------------------------------------------
@@ -166,6 +229,8 @@ void run_algo(int no_of_pages)
     fclose(lru_pt);
     fclose(nfu_pt);
     fclose(workingset_pt);
+    fclose(aging_pt);
+    fclose(wsclock_pt);
     //--------------------------------------------------------------------------
 
     char filename[] = "graph.py";
