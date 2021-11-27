@@ -228,6 +228,77 @@ f_9.savefig('workingset.png')
 # #PLT.title('Page Replacement Simulation')'''
 # PLT.legend(loc='best')
 
+PLT.clf()
+f_10 = PLT.figure(1)
+
+x10 = []
+y10 = []
+z10 = []
+f = open("aging_output.txt", "r")
+with open('aging_output.txt') as f:
+    lines = f.readlines()
+    for line in lines:
+        coordinates = line.split(',')
+        x10.append(int(coordinates[0]))
+        y10.append(float(coordinates[1]))
+        z10.append(int(coordinates[2]))
+PLT.plot(x10, y10,label="aging")
+
+PLT.title('Aging Page Replacement Algorithm',fontsize=16)
+PLT.xlabel('No. of frames',fontsize=14)
+PLT.ylabel('Miss Ratio',fontsize=14)
+
+f_10.savefig('aging.png')
+
+PLT.clf()
+f_11 = PLT.figure(1)
+
+x11 = []
+y11 = []
+z11 = []
+f = open("wsclock_output.txt", "r")
+with open('wsclock_output.txt') as f:
+    lines = f.readlines()
+    for line in lines:
+        coordinates = line.split(',')
+        x11.append(int(coordinates[0]))
+        y11.append(float(coordinates[1]))
+        z11.append(int(coordinates[2]))
+PLT.plot(x11, y11,label="wsclock")
+
+PLT.title('WSClock Page Replacement Algorithm',fontsize=16)
+PLT.xlabel('No. of frames',fontsize=14)
+PLT.ylabel('Miss Ratio',fontsize=14)
+
+f_11.savefig('wsclock.png')
+
+PLT.clf()
+f_12 = PLT.figure(1)
+
+PLT.plot(x1, y1, label="random")
+# plt1.plot(x1, z1, label="random")
+PLT.plot(x2, y2,  label="optimal")
+PLT.plot(x3, y3,  label="fifo")
+PLT.plot(x4, y4,  label="fifo_2nd")
+PLT.plot(x5, y5,  label="nru")
+PLT.plot(x6, y6,  label="clock")
+PLT.plot(x7, y7, label="lru")
+PLT.plot(x8, y8,  label="nfu")
+PLT.plot(x9, y9,  label="workingset")
+PLT.plot(x10, y10,  label="aging")
+PLT.plot(x11, y11,  label="wsclock")
+PLT.ylabel('Miss Ratio')
+
+PLT.xlabel('No. of frames')
+
+PLT.savefig('graph1.png')
+
+PLT.title('Page Replacement Simulation')
+# '''PLT.xlabel('No. of frames')
+# PLT.ylabel('Miss Ratio')
+# #PLT.title('Page Replacement Simulation')'''
+PLT.legend(loc='best')
+
 '''plt1.xlabel('No. of frames')
 plt1.ylabel('No. of swaps')
 plt1.legend(loc='best')'''
