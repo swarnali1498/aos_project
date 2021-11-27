@@ -1,10 +1,5 @@
 from matplotlib import pyplot as PLT
 
-# fig = PLT.figure()
-
-# plt = fig.add_subplot(211)
-
-# plt1 = fig.add_subplot(212)
 PLT.clf()
 
 f_1 = PLT.figure(1)
@@ -21,7 +16,6 @@ with open('random_output.txt') as f:
         y1.append(float(coordinates[1]))
         z1.append(int(coordinates[2]))
 PLT.plot(x1, y1)
-# plt1.plot(x1, z1, label="random")
 PLT.title('Random Page Replacement Algorithm',fontsize=16)
 PLT.xlabel('No. of frames',fontsize=14)
 PLT.ylabel('Miss Ratio',fontsize=14)
@@ -43,7 +37,6 @@ with open('optimal_output.txt') as f:
         y2.append(float(coordinates[1]))
         z2.append(int(coordinates[2]))
 PLT.plot(x1, y2,label="optimal")
-# plt1.plot(x1, z2,label="optimal")
 PLT.title('Optimal Page Replacement Algorithm',fontsize=16)
 PLT.xlabel('No. of frames',fontsize=14)
 PLT.ylabel('Miss Ratio',fontsize=14)
@@ -53,7 +46,6 @@ f_2.savefig('optimal.png')
 
 PLT.clf()
 f_3 = PLT.figure(1)
-
 
 x3 = []
 y3 = []
@@ -67,7 +59,6 @@ with open('nru_output.txt') as f:
         y3.append(float(coordinates[1]))
         z3.append(int(coordinates[2]))
 PLT.plot(x3, y3,label="nru")
-# plt1.plot(x3, z3,label="nru")
 
 PLT.title('NRU Page Replacement Algorithm',fontsize=16)
 PLT.xlabel('No. of frames',fontsize=14)
@@ -91,7 +82,6 @@ with open('fifo_output.txt') as f:
         y4.append(float(coordinates[1]))
         z4.append(int(coordinates[2]))
 PLT.plot(x4, y4,label="fifo")
-# plt1.plot(x4, z4,label="fifo")
 
 PLT.title('FIFO Page Replacement Algorithm',fontsize=16)
 PLT.xlabel('No. of frames',fontsize=14)
@@ -114,7 +104,6 @@ with open('fifo2nd_output.txt') as f:
         y5.append(float(coordinates[1]))
         z5.append(int(coordinates[2]))
 PLT.plot(x5, y5,label="fifo_2nd")
-# plt1.plot(x5, z5,label="fifo_2nd")
 
 PLT.title('FIFO 2nd Chance Page Replacement Algorithm',fontsize=16)
 PLT.xlabel('No. of frames',fontsize=14)
@@ -138,7 +127,6 @@ with open('clock_output.txt') as f:
         y6.append(float(coordinates[1]))
         z6.append(int(coordinates[2]))
 PLT.plot(x6, y6,label="clock")
-# plt1.plot(x6, z6,label="clock")
 
 PLT.title('Clock Page Replacement Algorithm',fontsize=16)
 PLT.xlabel('No. of frames',fontsize=14)
@@ -161,7 +149,6 @@ with open('lru_output.txt') as f:
         y7.append(float(coordinates[1]))
         z7.append(int(coordinates[2]))
 PLT.plot(x7, y7,label="lru")
-# plt1.plot(x7, z7,label="lru")
 
 PLT.title('LRU Page Replacement Algorithm',fontsize=16)
 PLT.xlabel('No. of frames',fontsize=14)
@@ -184,7 +171,6 @@ with open('nfu_output.txt') as f:
         y8.append(float(coordinates[1]))
         z8.append(int(coordinates[2]))
 PLT.plot(x8, y8,label="nfu")
-# plt1.plot(x8, z8,label="nfu")
 
 PLT.title('NFU Page Replacement Algorithm',fontsize=16)
 PLT.xlabel('No. of frames',fontsize=14)
@@ -207,26 +193,12 @@ with open('workingset_output.txt') as f:
         y9.append(float(coordinates[1]))
         z9.append(int(coordinates[2]))
 PLT.plot(x9, y9,label="workingset")
-# plt1.plot(x9, z9,label="workingset")
 
 PLT.title('Working Set Page Replacement Algorithm',fontsize=16)
 PLT.xlabel('No. of frames',fontsize=14)
 PLT.ylabel('Miss Ratio',fontsize=14)
 
 f_9.savefig('workingset.png')
-
-# PLT.set_ylabel('Miss Ratio')
-
-# PLT.set_xlabel('No. of frames')
-# PLT.set_ylabel('No. of swaps')
-
-
-
-# PLT.set_title('Page Replacement Simulation')
-# '''PLT.xlabel('No. of frames')
-# PLT.ylabel('Miss Ratio')
-# #PLT.title('Page Replacement Simulation')'''
-# PLT.legend(loc='best')
 
 PLT.clf()
 f_10 = PLT.figure(1)
@@ -276,7 +248,6 @@ PLT.clf()
 f_12 = PLT.figure(1)
 
 PLT.plot(x1, y1, label="random")
-# plt1.plot(x1, z1, label="random")
 PLT.plot(x2, y2,  label="optimal")
 PLT.plot(x3, y3,  label="fifo")
 PLT.plot(x4, y4,  label="fifo_2nd")
@@ -291,47 +262,33 @@ PLT.ylabel('Miss Ratio')
 
 PLT.xlabel('No. of frames')
 
-PLT.savefig('graph1.png')
-
 PLT.title('Page Replacement Simulation')
-# '''PLT.xlabel('No. of frames')
-# PLT.ylabel('Miss Ratio')
-# #PLT.title('Page Replacement Simulation')'''
+
 PLT.legend(loc='best')
 
-'''plt1.xlabel('No. of frames')
-plt1.ylabel('No. of swaps')
-plt1.legend(loc='best')'''
 
-#plt.show()
-# f_all.show()
+PLT.savefig('graph_all.png')
 
-PLT.savefig('graph1.png')
+PLT.clf()
+f_12 = PLT.figure(1)
 
+PLT.plot(x1, z1, label="random")
+PLT.plot(x2, z2,  label="optimal")
+PLT.plot(x3, z3,  label="fifo")
+PLT.plot(x4, z4,  label="fifo_2nd")
+PLT.plot(x5, z5,  label="nru")
+PLT.plot(x6, z6,  label="clock")
+PLT.plot(x7, z7, label="lru")
+PLT.plot(x8, z8,  label="nfu")
+PLT.plot(x9, z9,  label="workingset")
+PLT.plot(x10, z10,  label="aging")
+PLT.plot(x11, z11,  label="wsclock")
+PLT.ylabel('No. of swaps')
 
-# f1 = PLT.figure(1)
+PLT.xlabel('No. of frames')
 
-# PLT.plot(x9, y9,label="workingset")
+PLT.title('Page Replacement Simulation (Swaps Vs Frames)')
 
-# f1.savefig('workingset_graph.png')
+PLT.legend(loc='best')
 
-# f2 = plt.figure(2)
-
-# f3 = plt.figure(3)
-
-# f4 = plt.figure(4)
-
-# f5 = plt.figure(5)
-
-# f6 = plt.figure(6)
-
-# f7 = plt.figure(7)
-
-# f8 = plt.figure(8)
-
-# f9 = plt.figure(9)
-
-# f10 = plt.figure(10)
-
-# f11 = plt.figure(11)
-
+PLT.savefig('graph_swaps.png')

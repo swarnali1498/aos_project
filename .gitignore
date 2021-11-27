@@ -1,0 +1,15 @@
+random.png
+optimal.png
+fifo.png
+fifo_2nd.png
+lru.png
+nfu.png
+nru.png
+workingset.png
+wsclock.png
+clock.png
+aging.png
+graph_all.png
+graph_swaps.png
+main
+*.out
